@@ -45,7 +45,7 @@ class SignUpForm extends React.Component {
     if (password.length < minPasswordLength)
       errors.password = `Password must be at least ${minPasswordLength} characters.`
     if (password !== confirmPassword)
-      errors.password = `Password and password confirmation must be the same`
+      errors.password = `Passwords must match`
 
     this.setState({ errors })
     const formIsValid = Object.getOwnPropertyNames(errors).length === 0
@@ -78,7 +78,6 @@ class SignUpForm extends React.Component {
           htmlId="signup-form-email"
           labelName="Email"
           name="email"
-          value={email}
           required
           error={errors.email}
           onChange={this.onChange}
@@ -86,7 +85,6 @@ class SignUpForm extends React.Component {
         <PasswordInput
           htmlId="signup-form-password"
           name="password"
-          value={password}
           strengthPercentage={this.passwordStrength(password)}
           showVisibilityToggle
           maxLength={24}
@@ -96,11 +94,11 @@ class SignUpForm extends React.Component {
         <PasswordInput
           htmlId="signup-form-password"
           name="confirmPassword"
-          value={confirmPassword}
           showVisibilityToggle
           maxLength={24}
           error={errors.password}
           onChange={this.onChange}
+          labelName="Confirm Password"
         />
         <input type="submit" value="Sign Up" onClick={this.onSubmit} />
       </div>

@@ -73,7 +73,6 @@ class LoginForm extends React.Component {
             htmlId="login-form-email"
             labelName="Email"
             name="email"
-            value={email}
             required
             error={errors.email}
             onChange={this.onChange}
@@ -81,7 +80,6 @@ class LoginForm extends React.Component {
           <PasswordInput
             htmlId="login-form-password"
             name="password"
-            value={password}
             showVisibilityToggle
             maxLength={24}
             error={errors.password}
