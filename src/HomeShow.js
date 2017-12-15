@@ -8,8 +8,9 @@ class HomeShow extends React.Component {
   }
 
   render() {
-    return <div>Home Show</div>;
+    <p>Home Show</p>;
   }
 }
 
 export default HomeShow;
+
