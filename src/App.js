@@ -1,21 +1,22 @@
-import React, { Component } from "react"
-import Header from "./Header.js"
-import NewHomeForm from "./NewHomeForm.js"
-import HomeList from "./HomeList.js"
-import HomeShow from "./HomeShow.js"
-import LoginForm from "./LoginForm.js"
-import SignUpForm from "./SignUpForm.js"
+import React, { Component } from "react";
+import Header from "./Header.js";
+import NewHomeForm from "./NewHomeForm.js";
+import HomeList from "./HomeList.js";
+import HomeShow from "./HomeShow.js";
+import LoginForm from "./LoginForm.js";
+import SignUpForm from "./SignUpForm.js";
+import Section from "./Section.js";
 
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch
-} from "react-router-dom"
+} from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -29,46 +30,46 @@ class App extends Component {
             <Switch>
               <Route
                 path="/new-home"
-                render={(props) => {
-                  return <NewHomeForm {...props} />
+                render={props => {
+                  return <Section children={<NewHomeForm />} {...props} />;
                 }}
               />
               <Route
                 path="/homes"
-                render={(props) => {
-                  return <HomeList {...props} />
+                render={props => {
+                  return <Section children={<HomeList />} {...props} />;
                 }}
               />
               <Route
                 path="/homes/:id"
-                render={(props) => {
-                  return <HomeShow {...props} />
+                render={props => {
+                  return <Section children={<HomeShow />} {...props} />;
                 }}
               />
               <Route
                 path="/login"
-                render={(props) => {
-                  return <LoginForm {...props} />
+                render={props => {
+                  return <Section children={<LoginForm />} {...props} />;
                 }}
               />
               <Route
                 path="/signup"
-                render={(props) => {
-                  return <SignUpForm {...props} />
+                render={props => {
+                  return <Section children={<SignUpForm />} {...props} />;
                 }}
               />
               <Route
                 path="/*"
-                render={(props) => {
-                  return <Redirect to="/homes" />
+                render={props => {
+                  return <Redirect to="/homes" />;
                 }}
               />
             </Switch>
           </main>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;

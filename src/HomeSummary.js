@@ -1,26 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 class HomeSummary extends React.Component {
-
   constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-
+    super(props);
+    this.state = {};
   }
 
-
-
   render() {
-
-    return (
-      <div>
-      </div>
-    )
+    return <div>Home Summary</div>;
   }
 }
 
-
-export default HomeSummary
+export default HomeSummary;
