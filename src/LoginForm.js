@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import PasswordInput from './PasswordInput'
+import axios from "axios"
 import {
   Link
 } from "react-router-dom"
@@ -24,6 +25,8 @@ class LoginForm extends React.Component {
   onChange (event) {
     const user = this.state.user
     user[event.target.name] = event.target.value
+    console.log(`email: ${this.state.user.email}`)
+    console.log(`password: ${this.state.user.password}`)
     this.setState({ user })
   }
 
@@ -52,6 +55,21 @@ class LoginForm extends React.Component {
       this.props.onSubmit(this.state.user)
       this.setState({ submitted: true })
     }
+    axios
+      .post("http://localhost:3001/token", {
+        email: this.state.user.email,
+        password: this.state.user.password
+      })
+      .then((response) => {
+        console.log(response.data.token)
+        let token = response.data.token
+        localStorage.token = JSON.stringify(token)
+        console.log(JSON.parse(localStorage.token))
+        this.props.history.push("/")
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {

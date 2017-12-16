@@ -49,7 +49,7 @@ class App extends Component {
               <Route
                 path="/login"
                 render={props => {
-                  return <Section children={<LoginForm />} {...props} />;
+                  return <Section children={<LoginForm onSubmit={()=> console.log("submitted!")}/>} {...props} />;
                 }}
               />
               <Route

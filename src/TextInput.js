@@ -31,7 +31,7 @@ const TextInput = ({
         type={type}
         placeholder={placeholder}
         value={value}
-        name={onChange}
+        name={name}
         onChange={onChange}
         style={error && errorBorderStyle}
         {...props}
