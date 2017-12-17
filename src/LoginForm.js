@@ -25,8 +25,6 @@ class LoginForm extends React.Component {
   onChange (event) {
     const user = this.state.user
     user[event.target.name] = event.target.value
-    console.log(`email: ${this.state.user.email}`)
-    console.log(`password: ${this.state.user.password}`)
     this.setState({ user })
   }
 
@@ -56,15 +54,14 @@ class LoginForm extends React.Component {
       this.setState({ submitted: true })
     }
     axios
-      .post("http://localhost:3001/token", {
+      .post("http://localhost:3001/login", {
         email: this.state.user.email,
         password: this.state.user.password
       })
       .then((response) => {
         console.log(response.data.token)
-        let token = response.data.token
-        localStorage.token = JSON.stringify(token)
-        console.log(JSON.parse(localStorage.token))
+        localStorage.token = response.data.token
+         console.log(localStorage.token)
         this.props.history.push("/")
       })
       .catch(err => {
