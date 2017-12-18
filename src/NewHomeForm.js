@@ -179,9 +179,9 @@ class NewHomeForm extends React.Component {
 						onChange={this.onChange}
 					/>
 					<TextInput
-						labelName="Photos:"
+						labelName="Image Url:"
 						name="img_url"
-						type="file"
+						placeholder="https://yourhomephoto.jpg"
 						onChange={this.onChange}
 					/>
 					<TextInput
@@ -200,11 +200,18 @@ class NewHomeForm extends React.Component {
 						error={errors.type_rent_buy}
 						onChange={this.onChange}
 					/>
-					<input type="submit" />
+					<input type="submit" value="Submit" onClick={this.onSubmit} />
 				</div>
 			</div>
 		)
 	}
 }
 
+NewHomeForm.propTypes = {
+	confirmationMessage: PropTypes.string,
+	onSubmit: PropTypes.func.isRequired
+}
+NewHomeForm.defaultProps = {
+	confirmationMessage: 'Home has been submitted!'
+}
 export default NewHomeForm
