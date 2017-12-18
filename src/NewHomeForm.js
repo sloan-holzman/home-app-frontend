@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 class NewHomeForm extends React.Component {
 	constructor(props) {
@@ -19,6 +18,7 @@ class NewHomeForm extends React.Component {
 				num_bath: '',
 				sq_ft: '',
 				img_url: '',
+				price_range: '',
 				type_rent_buy: ''
 			},
 			errors: {},
@@ -42,6 +42,7 @@ class NewHomeForm extends React.Component {
 		num_bath,
 		sq_ft,
 		img_url,
+		price_range,
 		type_rent_buy
 	}) {
 		const errors = {}
@@ -52,6 +53,7 @@ class NewHomeForm extends React.Component {
 		if (!zipcode) errors.zipcode = 'Zipcode required.'
 		if (!num_bed) errors.num_bed = 'Number of beds required.'
 		if (!num_bath) errors.num_bath = 'Number of bathrooms required.'
+		if (!price_range) errors.price_range = 'Price range required.'
 		if (!type_rent_buy) errors.type_rent_buy = 'Field required.'
 
 		this.setState({ errors })
@@ -76,6 +78,7 @@ class NewHomeForm extends React.Component {
 				num_bath: this.state.home.num_bath,
 				sq_ft: this.state.home.sq_ft,
 				img_url: this.state.home.img_url,
+				price_range: this.state.home.price_range,
 				type_rent_buy: this.state.home.type_rent_buy
 			})
 			.then(response => {
@@ -98,6 +101,7 @@ class NewHomeForm extends React.Component {
 			num_bath,
 			sq_ft,
 			img_url,
+			price_range,
 			type_rent_buy
 		} = this.state.home
 		const formStyle = {
@@ -178,6 +182,14 @@ class NewHomeForm extends React.Component {
 						labelName="Photos:"
 						name="img_url"
 						type="file"
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Price range: $"
+						name="price_range"
+						placeholder="e.g. $ 1000 "
+						required
+						error={errors.price_range}
 						onChange={this.onChange}
 					/>
 					<TextInput
