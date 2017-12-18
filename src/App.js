@@ -6,7 +6,7 @@ import HomeShow from "./HomeShow.js";
 import LoginForm from "./LoginForm.js";
 import SignUpForm from "./SignUpForm.js";
 import Section from "./Section.js";
-
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,9 +14,36 @@ import {
   Switch
 } from "react-router-dom";
 
+if (localStorage.token) {
+  axios.defaults.headers.common["token"] = localStorage.token;
+} else {
+  axios.defaults.headers.common["token"] = "";
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      homes: [],
+      userId: ""
+    };
+  }
+
+  componentDidMount() {
+    // e.preventDefault();
+    axios
+      .get("http://localhost:3001/api/homes")
+      .then(response => {
+        console.log("dogs");
+        console.log(response);
+        this.setState({
+          homes: response.data.homes,
+          userId: response.data.userid
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -31,31 +58,78 @@ class App extends Component {
               <Route
                 path="/new-home"
                 render={props => {
-                  return <Section children={<NewHomeForm />} {...props} />;
+                  return (
+                    <Section
+                      children={
+                        <NewHomeForm
+                          onSubmit={() => console.log("Submitted!")}
+                        />
+                      }
+                      {...props}
+                    />
+                  );
                 }}
               />
               <Route
                 path="/homes"
                 render={props => {
-                  return <Section children={<HomeList />} {...props} />;
+                  return (
+                    <Section
+                      children={
+                        <HomeList
+                          userId={this.state.userId}
+                          homes={this.state.homes}
+                          {...props}
+                        />
+                      }
+                    />
+                  );
                 }}
               />
               <Route
                 path="/homes/:id"
                 render={props => {
-                  return <Section children={<HomeShow />} {...props} />;
+                  return (
+                    <Section
+                      children={
+                        <HomeShow
+                          userId={this.state.userId}
+                          homes={this.state.homes}
+                          {...props}
+                        />
+                      }
+                    />
+                  );
                 }}
               />
               <Route
                 path="/login"
                 render={props => {
-                  return <Section children={<LoginForm onSubmit={()=> console.log("submitted!")}/>} {...props} />;
+                  return (
+                    <Section
+                      children={
+                        <LoginForm
+                          {...props}
+                          onSubmit={() => console.log("submitted!")}
+                        />
+                      }
+                    />
+                  );
                 }}
               />
               <Route
                 path="/signup"
                 render={props => {
-                  return <Section children={<SignUpForm onSubmit={()=> console.log("submitted!")} />} {...props} />;
+                  return (
+                    <Section
+                      children={
+                        <SignUpForm
+                          {...props}
+                          onSubmit={() => console.log("submitted!")}
+                        />
+                      }
+                    />
+                  );
                 }}
               />
               <Route
