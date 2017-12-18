@@ -27,15 +27,14 @@ class App extends Component {
       homes: [],
       userId: ""
     };
+    this.retrieveHomes = this.retrieveHomes.bind(this);
   }
 
-  componentDidMount() {
-    // e.preventDefault();
+  retrieveHomes() {
     axios
       .get("http://localhost:3001/api/homes")
       .then(response => {
         console.log("dogs");
-        console.log(response);
         this.setState({
           homes: response.data.homes,
           userId: response.data.userid
@@ -44,6 +43,10 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  componentDidMount() {
+    this.retrieveHomes();
   }
 
   render() {
@@ -62,15 +65,17 @@ class App extends Component {
                     <Section
                       children={
                         <NewHomeForm
+                          retrieveHomes={this.retrieveHomes}
                           onSubmit={() => console.log("Submitted!")}
+                          {...props}
                         />
                       }
-                      {...props}
                     />
                   );
                 }}
               />
               <Route
+                exact
                 path="/homes"
                 render={props => {
                   return (
