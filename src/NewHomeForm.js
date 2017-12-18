@@ -1,26 +1,198 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import TextInput from './TextInput'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class NewHomeForm extends React.Component {
+	constructor(props) {
+		super(props)
 
-  constructor(props) {
-    super(props)
-    this.state = {
+		this.state = {
+			home: {
+				street_address: '',
+				unit: '',
+				city: '',
+				state: '',
+				zipcode: '',
+				num_bed: '',
+				num_bath: '',
+				sq_ft: '',
+				img_url: '',
+				type_rent_buy: ''
+			},
+			errors: {},
+			submitted: false
+		}
+		this.onChange = this.onChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
+	}
+	onChange(event) {
+		const home = this.state.home
+		home[event.target.name] = event.target.value
+		this.setState({ home })
+	}
+	validate({
+		street_address,
+		unit,
+		city,
+		state,
+		zipcode,
+		num_bed,
+		num_bath,
+		sq_ft,
+		img_url,
+		type_rent_buy
+	}) {
+		const errors = {}
 
-    }
+		if (!street_address) errors.street_address = 'Street address required.'
+		if (!city) errors.city = 'City required.'
+		if (!state) errors.state = 'State required.'
+		if (!zipcode) errors.zipcode = 'Zipcode required.'
+		if (!num_bed) errors.num_bed = 'Number of beds required.'
+		if (!num_bath) errors.num_bath = 'Number of bathrooms required.'
+		if (!type_rent_buy) errors.type_rent_buy = 'Field required.'
 
-  }
+		this.setState({ errors })
+		const formIsValid = Object.getOwnPropertyNames(errors).length === 0
+		return formIsValid
+	}
+	onSubmit(event) {
+		event.preventDefault()
+		const formIsValid = this.validate(this.state.home)
+		if (formIsValid) {
+			this.props.onSubmit(this.state.home)
+			this.setState({ submitted: true })
+		}
+		axios
+			.post('http://localhost:3001/api/home', {
+				street_address: this.state.home.street_address,
+				unit: this.state.home.unit,
+				city: this.state.home.city,
+				state: this.state.home.state,
+				zipcode: this.state.home.zipcode,
+				num_bed: this.state.home.num_bed,
+				num_bath: this.state.home.num_bath,
+				sq_ft: this.state.home.sq_ft,
+				img_url: this.state.home.img_url,
+				type_rent_buy: this.state.home.type_rent_buy
+			})
+			.then(response => {
+				console.log(response.data)
+			})
+			.catc(err => {
+				console.log(err)
+			})
+	}
 
-
-
-  render() {
-
-    return (
-      <div>
-      </div>
-    )
-  }
+	render() {
+		const { errors, submitted } = this.state
+		const {
+			street_address,
+			unit,
+			city,
+			state,
+			zipcode,
+			num_bed,
+			num_bath,
+			sq_ft,
+			img_url,
+			type_rent_buy
+		} = this.state.home
+		const formStyle = {
+			background: 'rgb(222, 222, 222)',
+			border: 'rgb(0, 0, 0)',
+			width: '400px',
+			padding: '1em'
+		}
+		return submitted ? (
+			<h2> {this.props.confirmationMessage} </h2>
+		) : (
+			<div>
+				<div style={formStyle}>
+					<h1> Add Home </h1>
+					<TextInput
+						labelName="Street Address:"
+						name="street_address"
+						placeholder="e.g. 111 River St."
+						required
+						error={errors.street_address}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Unit:"
+						name="unit"
+						placeholder="e.g. 14F"
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="City:"
+						name="city"
+						placeholder="e.g. Mclean"
+						required
+						error={errors.city}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="State:"
+						name="state"
+						placeholder="e.g. VA"
+						required
+						error={errors.state}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Zipcode:"
+						name="zipcode"
+						placeholder="e.g. 22222"
+						required
+						error={errors.zipcode}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Bedrooms:"
+						name="num_bed"
+						placeholder="e.g. 2"
+						required
+						error={errors.num_bed}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Bathrooms:"
+						name="num_bath"
+						placeholder="e.g. 2"
+						required
+						error={errors.num_bath}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Sqft:"
+						name="sq_ft"
+						placeholder="e.g. 700"
+						required
+						error={errors.sq_ft}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Photos:"
+						name="img_url"
+						type="file"
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName=" Property for rent or sell ?"
+						name="type_rent_buy"
+						placeholder="e.g. rent"
+						required
+						error={errors.type_rent_buy}
+						onChange={this.onChange}
+					/>
+					<input type="submit" />
+				</div>
+			</div>
+		)
+	}
 }
-
 
 export default NewHomeForm
