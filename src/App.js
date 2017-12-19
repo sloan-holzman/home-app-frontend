@@ -15,6 +15,7 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+import backend from "./BackendVariable";
 
 if (localStorage.token) {
   axios.defaults.headers.common["token"] = localStorage.token;
@@ -34,14 +35,14 @@ class App extends Component {
 
   retrieveHomes() {
     axios
-      .get("http://localhost:3001/api/homes")
+      .get("{backend}")
       .then(response => {
         console.log("dogs");
         this.setState({
           homes: response.data.homes,
           userId: response.data.userid
         });
-        console.log(typeof this.state.homes)
+        console.log(typeof this.state.homes);
       })
       .catch(err => {
         console.log(err);
@@ -160,15 +161,7 @@ class App extends Component {
               <Route
                 path="/logout"
                 render={props => {
-                  return (
-                    <Section
-                      children={
-                        <Logout
-                          {...props}
-                        />
-                      }
-                    />
-                  );
+                  return <Section children={<Logout {...props} />} />;
                 }}
               />
               <Route
