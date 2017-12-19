@@ -42,11 +42,12 @@ class EditHomeForm extends React.Component {
 	}
 
 	componentWillMount() {
-		const new_home = this.props.homes.map((home, i) => {
-			if (home._id === this.props.match.params.id) {
-				return home}
-		})
+		const new_home = this.props.homes.filter((home) => home._id === this.props.match.params.id)[0]
 		console.log(new_home)
+		this.setState({
+			home: new_home
+		})
+		console.log(this.state.home)
 	}
 
 	validate({
