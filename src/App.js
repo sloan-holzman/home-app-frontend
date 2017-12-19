@@ -103,6 +103,7 @@ class App extends Component {
                         <DeleteHome
                           userId={this.state.userId}
                           homes={this.state.homes}
+                          retrieveHomes={this.retrieveHomes}
                           {...props}
                         />
                       }

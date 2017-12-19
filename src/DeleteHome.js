@@ -27,6 +27,9 @@ deleteHome(){
     .delete(`http://localhost:3001/api/homes/${this.props.match.params.id}`)
     .then(response => {
       console.log("deleted");
+      this.props.retrieveHomes()
+    })
+    .then(()=>{
       this.props.history.push(`/`)
     })
     .catch(err => {
