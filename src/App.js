@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header.js";
 import NewHomeForm from "./NewHomeForm.js";
+import EditHomeForm from "./EditHomeForm.js"
 import HomeList from "./HomeList.js";
 import HomeShow from "./HomeShow.js";
 import LoginForm from "./LoginForm.js";
@@ -104,6 +105,22 @@ class App extends Component {
                           userId={this.state.userId}
                           homes={this.state.homes}
                           retrieveHomes={this.retrieveHomes}
+                          {...props}
+                        />
+                      }
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/homes/:id/edit"
+                render={props => {
+                  return (
+                    <Section
+                      children={
+                        <EditHomeForm
+                          userId={this.state.userId}
+                          homes={this.state.homes}
                           {...props}
                         />
                       }
