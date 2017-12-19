@@ -13,7 +13,11 @@ const Header = ({}) => {
         <h1>Home App</h1>
         <Link to="/">Home</Link>
         <Link to="/new-home">New Home</Link>
-        <Link to="/login">Login</Link>
+        {
+          (localStorage.token.length < 10) ?
+            <Link to="/login">Login</Link> :
+            <Link to="/logout">Logout</Link>
+        }
       </nav>
     </div>
   );

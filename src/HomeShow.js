@@ -1,13 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 
 class HomeShow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
 
   render() {
     // let home = this.props.homes.filter((home) => home._id === this.props.match.params.id)

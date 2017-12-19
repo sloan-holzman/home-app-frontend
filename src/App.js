@@ -4,6 +4,7 @@ import NewHomeForm from "./NewHomeForm.js";
 import HomeList from "./HomeList.js";
 import HomeShow from "./HomeShow.js";
 import LoginForm from "./LoginForm.js";
+import Logout from "./Logout.js";
 import SignUpForm from "./SignUpForm.js";
 import Section from "./Section.js";
 import axios from "axios";
@@ -132,6 +133,20 @@ class App extends Component {
                         <SignUpForm
                           {...props}
                           onSubmit={() => console.log("submitted!")}
+                        />
+                      }
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/logout"
+                render={props => {
+                  return (
+                    <Section
+                      children={
+                        <Logout
+                          {...props}
                         />
                       }
                     />
