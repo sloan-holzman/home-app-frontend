@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const Section = ({ children, ...props }) => {
   const sectionStyle = {
