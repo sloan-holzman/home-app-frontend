@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import axios from 'axios'
-import DropDown from './Dropdown'
+import DropDown from './DropDown'
 
 if (localStorage.token) {
 	axios.defaults.headers.common['token'] = localStorage.token
