@@ -126,11 +126,13 @@ class NewHomeForm extends React.Component {
 			width: '400px',
 			padding: '1em'
 		}
-		return submitted ? (
-			<h2> {this.props.confirmationMessage} </h2>
-		) : (
-			<div>
-				<div style={formStyle}>
+
+		let formDisplay = null;
+		if (localStorage.token && localStorage.token.length > 10) {
+			if (submitted) {
+				formDisplay = (<h2> {this.props.confirmationMessage} </h2>)
+			} else {
+				formDisplay = (<div style={formStyle}>
 					<h1> Add Home </h1>
 					<TextInput
 						labelName="Street Address:"
@@ -216,7 +218,14 @@ class NewHomeForm extends React.Component {
 						onChange={this.onChange}
 					/>
 					<input type="submit" value="Submit" onClick={this.onSubmit} />
-				</div>
+				</div>)
+			}
+		} else {
+			formDisplay = (<p>You must be logged in if you want to post a new home</p>)
+		}
+		return (
+			<div>
+				{formDisplay}
 			</div>
 		)
 	}
