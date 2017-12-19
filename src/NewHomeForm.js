@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import axios from 'axios'
 import DropDown from './DropDown'
+import './NewHomeForm.css'
 
 if (localStorage.token) {
 	axios.defaults.headers.common['token'] = localStorage.token
@@ -121,100 +122,108 @@ class NewHomeForm extends React.Component {
 			type_rent_buy
 		} = this.state.home
 		const formStyle = {
-			background: 'rgb(222, 222, 222)',
-			border: 'rgb(0, 0, 0)',
-			width: '400px',
-			padding: '1em'
+			background: '#ffffff',
+			border: '2px solid #01153d',
+			padding: '20px 25px',
+			width: '500px',
+			margin: '50px 450px',
+			height: 'inherit',
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center'
 		}
 		return submitted ? (
 			<h2> {this.props.confirmationMessage} </h2>
 		) : (
 			<div>
 				<div style={formStyle}>
-					<h1> Add Home </h1>
-					<TextInput
-						labelName="Street Address:"
-						name="street_address"
-						placeholder="e.g. 111 River St."
-						required
-						error={errors.street_address}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Unit:"
-						name="unit"
-						placeholder="e.g. 14F"
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="City:"
-						name="city"
-						placeholder="e.g. Mclean"
-						required
-						error={errors.city}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="State:"
-						name="state"
-						placeholder="e.g. VA"
-						required
-						error={errors.state}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Zipcode:"
-						name="zipcode"
-						placeholder="e.g. 22222"
-						required
-						error={errors.zipcode}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bedrooms:"
-						name="num_bed"
-						placeholder="e.g. 2"
-						required
-						error={errors.num_bed}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bathrooms:"
-						name="num_bath"
-						placeholder="e.g. 2"
-						required
-						error={errors.num_bath}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Sqft:"
-						name="sq_ft"
-						placeholder="e.g. 700"
-						required
-						error={errors.sq_ft}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Image Url:"
-						name="img_url"
-						placeholder="https://yourhomephoto.jpg"
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Price range: $"
-						name="price_range"
-						placeholder="e.g. $ 1000 "
-						required
-						error={errors.price_range}
-						onChange={this.onChange}
-					/>
-					<DropDown
-						labelName=" Property for rent or sell ?"
-						name="type_rent_buy"
-						required
-						error={errors.type_rent_buy}
-						onChange={this.onChange}
-					/>
+					<h2> Add Home </h2>
+					<p>
+						<TextInput
+							labelName="Street Address:"
+							name="street_address"
+							placeholder="e.g. 111 River St."
+							required
+							error={errors.street_address}
+							onChange={this.onChange}
+						/>
+
+						<TextInput
+							labelName="Unit:"
+							name="unit"
+							placeholder="e.g. 14F"
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="City:"
+							name="city"
+							placeholder="e.g. Mclean"
+							required
+							error={errors.city}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="State:"
+							name="state"
+							placeholder="e.g. VA"
+							required
+							error={errors.state}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Zipcode:"
+							name="zipcode"
+							placeholder="e.g. 22222"
+							required
+							error={errors.zipcode}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Bedrooms:"
+							name="num_bed"
+							placeholder="e.g. 2"
+							required
+							error={errors.num_bed}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Bathrooms:"
+							name="num_bath"
+							placeholder="e.g. 2"
+							required
+							error={errors.num_bath}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Sqft:"
+							name="sq_ft"
+							placeholder="e.g. 700"
+							required
+							error={errors.sq_ft}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Image Url:"
+							name="img_url"
+							placeholder="https://yourhomephoto.jpg"
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Price range: $"
+							name="price_range"
+							placeholder="e.g. $ 1000 "
+							required
+							error={errors.price_range}
+							onChange={this.onChange}
+						/>
+						<DropDown
+							labelName=" Property for rent or sell ?"
+							name="type_rent_buy"
+							required
+							error={errors.type_rent_buy}
+							onChange={this.onChange}
+						/>
+					</p>
 					<input type="submit" value="Submit" onClick={this.onSubmit} />
 				</div>
 			</div>

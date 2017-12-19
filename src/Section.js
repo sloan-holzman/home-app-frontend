@@ -1,12 +1,9 @@
-import React from "react";
+import React from 'react'
 
 const Section = ({ children, ...props }) => {
-  const sectionStyle = {
-    margin: "5px",
-    border: "1px solid black"
-  };
+	const sectionStyle = {}
 
-  return <div style={sectionStyle}>{children}</div>;
-};
+	return <div style={sectionStyle}>{children}</div>
+}
 
-export default Section;
+export default Section
