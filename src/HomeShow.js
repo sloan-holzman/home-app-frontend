@@ -23,9 +23,18 @@ class HomeShow extends React.Component {
             <p>{home.num_bed} beds - {home.num_bath} baths - {home.sq_ft} sqft</p>
             {
               (this.props.userId === home.owner_id) ?
-                <Link to={`/homes/${home._id}/edit`}>
-                  Edit Home
-                </Link> : <p></p>
+                <div>
+                  <Link to={`/homes/${home._id}/edit`}>
+                    Edit Home
+                  </Link>
+                  <br/>
+                  <Link to={`/homes/${home._id}/delete`}>
+                    Delete Home
+                  </Link>
+                </div>
+              :
+              <p></p>
+
             }
           </div>
         );

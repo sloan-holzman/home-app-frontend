@@ -5,6 +5,7 @@ import HomeList from "./HomeList.js";
 import HomeShow from "./HomeShow.js";
 import LoginForm from "./LoginForm.js";
 import Logout from "./Logout.js";
+import DeleteHome from "./DeleteHome.js";
 import SignUpForm from "./SignUpForm.js";
 import Section from "./Section.js";
 import axios from "axios";
@@ -84,6 +85,22 @@ class App extends Component {
                     <Section
                       children={
                         <HomeList
+                          userId={this.state.userId}
+                          homes={this.state.homes}
+                          {...props}
+                        />
+                      }
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/homes/:id/delete"
+                render={props => {
+                  return (
+                    <Section
+                      children={
+                        <DeleteHome
                           userId={this.state.userId}
                           homes={this.state.homes}
                           {...props}
