@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import axios from 'axios'
-import DropDown from './DropDown'
+import DropDown from './Dropdown'
 
 if (localStorage.token) {
 	axios.defaults.headers.common['token'] = localStorage.token
@@ -26,7 +26,7 @@ class NewHomeForm extends React.Component {
 				sq_ft: '',
 				img_url: '',
 				price_range: '',
-				type_rent_buy: ''
+				type_rent_buy: 'Rent'
 			},
 			errors: {},
 			submitted: false
@@ -37,6 +37,7 @@ class NewHomeForm extends React.Component {
 	onChange(event) {
 		const home = this.state.home
 		home[event.target.name] = event.target.value
+		console.log(event.target.value)
 		this.setState({ home })
 	}
 	validate({
