@@ -36,7 +36,7 @@ class App extends Component {
 
   retrieveHomes() {
     axios
-      .get("{backend}")
+      .get("http://localhost:3001/api/homes")
       .then(response => {
         console.log("dogs");
         this.setState({
