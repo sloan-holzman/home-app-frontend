@@ -39,6 +39,7 @@ class App extends Component {
           homes: response.data.homes,
           userId: response.data.userid
         });
+        console.log(typeof this.state.homes)
       })
       .catch(err => {
         console.log(err);
