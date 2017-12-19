@@ -30,6 +30,7 @@ class EditHomeForm extends React.Component {
 			},
 			errors: {},
 			submitted: false,
+			homeId: ''
 		}
 		this.onChange = this.onChange.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
@@ -41,13 +42,16 @@ class EditHomeForm extends React.Component {
 		this.setState({ home })
 	}
 
-	componentWillMount() {
-		const new_home = this.props.homes.filter((home) => home._id === this.props.match.params.id)[0]
-		console.log(new_home)
-		this.setState({
-			home: new_home
-		})
-		console.log(this.state.home)
+	componentDidMount() {
+			axios
+				.get(`http://localhost:3001/api/homes/${this.props.match.params.id}`)
+				.then(response => {
+					console.log(response.data)
+					this.setState({
+					 home: response.data,
+					 homeId:response.data._id
+				 }, ()=> console.log(this.state.home))
+				})
 	}
 
 	validate({
@@ -107,8 +111,7 @@ class EditHomeForm extends React.Component {
 				return homeId
 			})
 			.then(homeId => {
-				console.log(this.props)
-				this.props.history.push(`/homes/${homeId}`)
+				this.props.history.push(`/homes/${this.state.homeId}`)
 			})
 			.catch(err => {
 				console.log(err)
@@ -117,19 +120,6 @@ class EditHomeForm extends React.Component {
 
 	render() {
 		const { errors, submitted } = this.state
-		const {
-			street_address,
-			unit,
-			city,
-			state,
-			zipcode,
-			num_bed,
-			num_bath,
-			sq_ft,
-			img_url,
-			price_range,
-			type_rent_buy
-		} = this.state.home
 		const formStyle = {
 			background: 'rgb(222, 222, 222)',
 			border: 'rgb(0, 0, 0)',
@@ -137,107 +127,104 @@ class EditHomeForm extends React.Component {
 			padding: '1em'
 		}
 
-		let form = this.props.homes.map((home, i) => {
-			if (home._id === this.props.match.params.id) {
-				return (
-					<div style={formStyle} key={i}>
-						<h1> Edit Home </h1>
-						<TextInput
-							labelName="Street Address:"
-							name="street_address"
-							defaultValue={home.street_address}
-							required
-							error={errors.street_address}
-							onChange={this.onChange}
-							ref="street_address"
-						/>
-						<TextInput
-							labelName="Unit:"
-							name="unit"
-							defaultValue={home.unit}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="City:"
-							name="city"
-							defaultValue={home.city}
-							required
-							error={errors.city}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="State:"
-							name="state"
-							defaultValue={home.state}
-							required
-							error={errors.state}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Zipcode:"
-							name="zipcode"
-							defaultValue={home.zipcode}
-							required
-							error={errors.zipcode}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Bedrooms:"
-							name="num_bed"
-							defaultValue={home.num_bed}
-							required
-							error={errors.num_bed}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Bathrooms:"
-							name="num_bath"
-							defaultValue={home.num_bath}
-							required
-							error={errors.num_bath}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Sqft:"
-							name="sq_ft"
-							defaultValue={home.sq_ft}
-							required
-							error={errors.sq_ft}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Image Url:"
-							name="img_url"
-							defaultValue={home.img_url}
-							onChange={this.onChange}
-						/>
-						<TextInput
-							labelName="Price range: $"
-							name="price_range"
-							defaultValue={home.price_range}
-							required
-							error={errors.price_range}
-							onChange={this.onChange}
-						/>
-						<DropDown
-							labelName=" Property for rent or sell ?"
-							name="type_rent_buy"
-							defaultValue={home.type_rent_buy}
-							required
-							error={errors.type_rent_buy}
-							onChange={this.onChange}
-						/>
-						<input type="submit" value="Submit" onClick={this.onSubmit} />
-					</div>
-				);
-			}
-		});
+		let home = this.props.homes.find(home=> home._id === this.props.match.params.id)
 
-	return (
-		<div>
-			{form}
-		</div>
-			)
+    if (!home) {
+      return (
+        <p>Loading...</p>
+      )
+    } else {
+			return (
+				<div style={formStyle}>
+					<h1> Edit Home </h1>
+					<TextInput
+						labelName="Street Address:"
+						name="street_address"
+						defaultValue={home.street_address}
+						required
+						error={errors.street_address}
+						onChange={this.onChange}
+						ref="street_address"
+					/>
+					<TextInput
+						labelName="Unit:"
+						name="unit"
+						defaultValue={home.unit}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="City:"
+						name="city"
+						defaultValue={home.city}
+						required
+						error={errors.city}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="State:"
+						name="state"
+						defaultValue={home.state}
+						required
+						error={errors.state}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Zipcode:"
+						name="zipcode"
+						defaultValue={home.zipcode}
+						required
+						error={errors.zipcode}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Bedrooms:"
+						name="num_bed"
+						defaultValue={home.num_bed}
+						required
+						error={errors.num_bed}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Bathrooms:"
+						name="num_bath"
+						defaultValue={home.num_bath}
+						required
+						error={errors.num_bath}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Sqft:"
+						name="sq_ft"
+						defaultValue={home.sq_ft}
+						required
+						error={errors.sq_ft}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Image Url:"
+						name="img_url"
+						defaultValue={home.img_url}
+						onChange={this.onChange}
+					/>
+					<TextInput
+						labelName="Price range: $"
+						name="price_range"
+						defaultValue={home.price_range}
+						required
+						error={errors.price_range}
+						onChange={this.onChange}
+					/>
+					<DropDown
+						labelName=" Property for rent or sell ?"
+						name="type_rent_buy"
+						defaultValue={home.type_rent_buy}
+						required
+						error={errors.type_rent_buy}
+						onChange={this.onChange}
+					/>
+					<input type="submit" value="Submit" onClick={this.onSubmit} />
+				</div>)
+		}
 	}
 }
 

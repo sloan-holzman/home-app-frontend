@@ -119,8 +119,10 @@ class App extends Component {
                     <Section
                       children={
                         <EditHomeForm
+                          retrieveHomes={this.retrieveHomes}
                           userId={this.state.userId}
                           homes={this.state.homes}
+                          onSubmit={() => console.log("Submitted!")}
                           {...props}
                         />
                       }
