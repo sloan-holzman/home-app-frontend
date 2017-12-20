@@ -76,20 +76,24 @@ class NewHomeForm extends React.Component {
       this.props.onSubmit(this.state.home);
       this.setState({ submitted: true });
     }
-    axios
-      .post("http://localhost:3001/api/homes", {
-        street_address: this.state.home.street_address,
-        unit: this.state.home.unit,
-        city: this.state.home.city,
-        state: this.state.home.state,
-        zipcode: this.state.home.zipcode,
-        num_bed: this.state.home.num_bed,
-        num_bath: this.state.home.num_bath,
-        sq_ft: this.state.home.sq_ft,
-        img_url: this.state.home.img_url,
-        price_range: this.state.home.price_range,
-        type_rent_buy: this.state.home.type_rent_buy
-      })
+    axios(
+			{ method: 'POST',
+			url: `http://localhost:3001/api/homes`,
+			headers: {token: localStorage.token},
+			data: {
+  			street_address: this.state.home.street_address,
+  			unit: this.state.home.unit,
+  			city: this.state.home.city,
+  			state: this.state.home.state,
+  			zipcode: this.state.home.zipcode,
+  			num_bed: this.state.home.num_bed,
+  			num_bath: this.state.home.num_bath,
+  			sq_ft: this.state.home.sq_ft,
+  			img_url: this.state.home.img_url,
+  			price_range: this.state.home.price_range,
+  			type_rent_buy: this.state.home.type_rent_buy
+			 }
+  		})
       .then(response => {
         console.log(response);
         console.log(response.data._id);

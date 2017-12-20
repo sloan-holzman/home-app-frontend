@@ -4,12 +4,6 @@ import TextInput from './TextInput'
 import axios from 'axios'
 import DropDown from './DropDown'
 
-// if (localStorage.token) {
-// 	axios.defaults.headers.common['token'] = localStorage.token
-// } else {
-// 	axios.defaults.headers.common['token'] = ''
-// }
-
 class EditHomeForm extends React.Component {
 	constructor(props) {
 		super(props)
@@ -89,8 +83,11 @@ class EditHomeForm extends React.Component {
 			this.props.onSubmit(this.state.home)
 			this.setState({ submitted: true })
 		}
-		axios
-			.put(`http://localhost:3001/api/homes/${this.props.match.params.id}`, {
+		axios(
+			{ method: 'PUT',
+			url: `http://localhost:3001/api/homes/${this.props.match.params.id}`,
+			headers: {token: localStorage.token},
+			data: {
 				street_address: this.state.home.street_address,
 				unit: this.state.home.unit,
 				city: this.state.home.city,
@@ -102,7 +99,8 @@ class EditHomeForm extends React.Component {
 				img_url: this.state.home.img_url,
 				price_range: this.state.home.price_range,
 				type_rent_buy: this.state.home.type_rent_buy
-			})
+			 }
+		})
 			.then(response => {
 				console.log(response)
 				console.log(response.data._id)

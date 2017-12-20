@@ -3,6 +3,7 @@ import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const MyMapComponent = compose(
+
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAWaxlS3Hg-U3SLUNPq6MjB2EKQp4eusps",
     loadingElement: <div style={{ height: `100%` }} />,
@@ -14,9 +15,9 @@ const MyMapComponent = compose(
 )((props) =>
   <GoogleMap
     defaultZoom={15}
-    defaultCenter={{ lat: 38.9217805, lng: -77.0332667 }}
+    defaultCenter={props.center}
   >
-    {props.isMarkerShown && <Marker position={{ lat: 38.9217805, lng: -77.0332667 }} />}
+    {props.isMarkerShown && <Marker position={props.center} />}
   </GoogleMap>
 )
 

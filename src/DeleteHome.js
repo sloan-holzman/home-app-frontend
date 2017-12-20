@@ -2,12 +2,6 @@ import React from "react";
 import axios from "axios";
 import backend from "./BackendVariable";
 
-// if (localStorage.token) {
-//   axios.defaults.headers.common["token"] = localStorage.token;
-// } else {
-//   axios.defaults.headers.common["token"] = "";
-// }
-
 class DeleteHome extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +18,9 @@ class DeleteHome extends React.Component {
 
   deleteHome() {
     axios
-      .delete(`http://localhost:3001/api/homes/${this.props.match.params.id}`)
+      .delete(`http://localhost:3001/api/homes/${this.props.match.params.id}`, {
+        headers: { token: localStorage.token }
+      })
       .then(response => {
         console.log("deleted");
         this.props.retrieveHomes();
