@@ -36,7 +36,7 @@ class HomeShow extends React.Component {
   }
   getHome() {
     axios
-      .get(`{backend}api/homes/${this.props.match.params.id}`)
+      .get(`${backend}api/homes/${this.props.match.params.id}`)
       .then(response => {
         console.log(response.data);
         this.setState(
