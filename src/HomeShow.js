@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MyMapComponent from "./MyMapComponent.js";
 import axios from "axios";
+import backend from "./BackendVariable";
+
 class HomeShow extends React.Component {
   constructor(props) {
     super(props);
@@ -118,4 +120,3 @@ class HomeShow extends React.Component {
   }
 }
 export default HomeShow;
-
