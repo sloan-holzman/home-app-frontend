@@ -70,16 +70,17 @@ class LoginForm extends React.Component {
 			border: '1px solid #000000',
 			padding: '5px 50px',
 			width: '500px',
-			margin: '4px 50px',
-			height: 'inherit',
+			margin: '2px auto',
 			display: 'flex',
 			flexDirection: 'column',
-			justifyContent: 'center'
+			justifyContent: 'center',
+			backgroundColor: 'white'
 		}
 		return submitted ? (
 			<h2>{this.props.confirmationMessage}</h2>
 		) : (
 			<div>
+				<div className="form-spacer"> </div>
 				<div style={formStyle}>
 					<TextInput
 						htmlId="login-form-email"
