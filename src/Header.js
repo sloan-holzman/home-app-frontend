@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Alert from "./Alert";
 
 const Header = ({}) => {
   const headerStyle = {
@@ -18,6 +19,7 @@ const Header = ({}) => {
         ) : (
           <Link to="/login">Login</Link>
         )}
+        <Alert />
       </nav>
     </div>
   );

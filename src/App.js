@@ -41,7 +41,7 @@ class App extends Component {
           homes: response.data.homes,
           userId: response.data.userid
         });
-        console.log(typeof this.state.homes)
+        console.log(typeof this.state.homes);
       })
       .catch(err => {
         console.log(err);
@@ -150,7 +150,7 @@ class App extends Component {
                       children={
                         <SignUpForm
                           {...props}
-                          onSubmit={() => console.log("submitted!")}
+                          // onSubmit={() => console.log("submitted!")}
                         />
                       }
                     />
@@ -160,15 +160,7 @@ class App extends Component {
               <Route
                 path="/logout"
                 render={props => {
-                  return (
-                    <Section
-                      children={
-                        <Logout
-                          {...props}
-                        />
-                      }
-                    />
-                  );
+                  return <Section children={<Logout {...props} />} />;
                 }}
               />
               <Route

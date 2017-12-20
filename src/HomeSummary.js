@@ -7,7 +7,6 @@ class HomeSummary extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Link to={`/homes/${this.props.home._id}`}>

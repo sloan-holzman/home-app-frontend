@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import TextInput from "./TextInput";
 import PasswordInput from "./PasswordInput";
 import axios from "axios";
+import Alert from "./Alert";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class SignUpForm extends React.Component {
     event.preventDefault();
     const formIsValid = this.validate(this.state.user);
     if (formIsValid) {
-      this.props.onSubmit(this.state.user);
+      // this.props.onSubmit(this.state.user);
       this.setState({ submitted: true });
     }
     axios
@@ -66,6 +67,13 @@ class SignUpForm extends React.Component {
       })
       .then(response => {
         console.log(response);
+        console.log(response.status);
+        // console.log(response.data);
+        if (response.status === 200) {
+          console.log("happy times");
+          return <Alert msg={"Thanks for signing up!"} />;
+          this.props.msg = "Thanks for signing up!";
+        }
         localStorage.token = response.data.token;
         console.log(localStorage.token);
         this.props.history.push("/");
@@ -121,15 +129,13 @@ class SignUpForm extends React.Component {
 }
 
 SignUpForm.propTypes = {
-  confirmationMessage: PropTypes.string,
+  // confirmationMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   minPasswordLength: PropTypes.number
 };
 
-SignUpForm.defaultProps = {
-  confirmationMessage:
-    "Thanks for signing up! You should receive an email confirmation shortly.",
-  minPasswordLength: 8
-};
+// SignUpForm.defaultProps = {
+//   confirmationMessage: <Alert msg={"Thanks for signing up!"} />
+// };
 
 export default SignUpForm;
