@@ -72,9 +72,13 @@ class SignUpForm extends React.Component {
         console.log(response);
         localStorage.token = response.data.token;
         console.log(localStorage.token);
+        // this.props.setMessage("Signed in successfully!");
+        // this.props.alertToggle(true);
+        // this.props.retrieveHomes();
         this.props.history.push("/");
       })
       .catch(err => {
+        // this.props.setMessage("Sorry, something went wrong.");
         console.log(err);
       });
   }

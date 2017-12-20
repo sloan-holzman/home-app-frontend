@@ -56,12 +56,18 @@ class LoginForm extends React.Component {
         password: this.state.user.password
       })
       .then(response => {
+        console.log(response);
         console.log(response.data.token);
         localStorage.token = response.data.token;
         console.log(localStorage.token);
+        this.props.setMessage("Logged in successfully!");
+        this.props.alertToggle(true);
+        this.props.retrieveHomes();
         this.props.history.push("/");
       })
       .catch(err => {
+        this.props.setMessage("Sorry, something went wrong.");
+        this.props.alertToggle(true);
         console.log(err);
       });
   }

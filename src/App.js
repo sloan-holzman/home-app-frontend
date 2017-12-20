@@ -25,11 +25,12 @@ class App extends Component {
       homes: [],
       userId: "",
       alertOn: true,
-      msg: "hello"
+      msg: ""
     };
     this.retrieveHomes = this.retrieveHomes.bind(this);
     this.alertToggle = this.alertToggle.bind(this);
     this.setMessage = this.setMessage.bind(this);
+    this.onViewChange = this.onViewChange.bind(this);
   }
 
   retrieveHomes() {
@@ -50,10 +51,14 @@ class App extends Component {
       });
   }
 
-  alertToggle() {
+  alertToggle(status) {
     this.setState({
-      alertOn: !this.state.alertOn
+      alertOn: status
     });
+  }
+
+  onViewChange() {
+    this.alertToggle(false);
   }
 
   setMessage(message) {
@@ -71,7 +76,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <nav>
-            <Header />
+            <Header
+              msg={this.state.msg}
+              alertOn={this.state.alertOn}
+              alertToggle={this.alertToggle}
+              onViewChange={this.onViewChange}
+            />
           </nav>
           <main>
             <Switch>
@@ -82,6 +92,10 @@ class App extends Component {
                     <NewHomeForm
                       retrieveHomes={this.retrieveHomes}
                       onSubmit={() => console.log("Submitted!")}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
                       {...props}
                     />
                   );
@@ -95,6 +109,11 @@ class App extends Component {
                     <HomeList
                       userId={this.state.userId}
                       homes={this.state.homes}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
+                      onViewChange={this.onViewChange}
                       {...props}
                     />
                   );
@@ -108,6 +127,10 @@ class App extends Component {
                       userId={this.state.userId}
                       homes={this.state.homes}
                       retrieveHomes={this.retrieveHomes}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
                       {...props}
                     />
                   );
@@ -122,6 +145,10 @@ class App extends Component {
                       userId={this.state.userId}
                       homes={this.state.homes}
                       onSubmit={() => console.log("Submitted!")}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
                       {...props}
                     />
                   );
@@ -134,6 +161,10 @@ class App extends Component {
                     <HomeShow
                       userId={this.state.userId}
                       homes={this.state.homes}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
                       {...props}
                     />
                   );
@@ -146,6 +177,11 @@ class App extends Component {
                     <LoginForm
                       {...props}
                       onSubmit={() => console.log("submitted!")}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
+                      retrieveHomes={this.retrieveHomes}
                     />
                   );
                 }}
@@ -157,6 +193,10 @@ class App extends Component {
                     <SignUpForm
                       {...props}
                       onSubmit={() => console.log("submitted!")}
+                      msg={this.state.msg}
+                      alertOn={this.state.alertOn}
+                      alertToggle={this.alertToggle}
+                      setMessage={this.setMessage}
                     />
                   );
                 }}
@@ -166,6 +206,10 @@ class App extends Component {
                 render={props => {
                   return <Section children={<Logout {...props} />} />;
                 }}
+                msg={this.state.msg}
+                alertOn={this.state.alertOn}
+                alertToggle={this.alertToggle}
+                setMessage={this.setMessage}
               />
               <Route
                 path="/*"
