@@ -1,26 +1,26 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import './Header.css'
 const Header = ({}) => {
-  const headerStyle = {
-    display: "flex",
-    justifyContent: "space-around"
-  };
-  return (
-    <div>
-      <nav style={headerStyle}>
-        <h1>Home App</h1>
-        <Link to="/">Home</Link>
-        <Link to="/new-home">New Home</Link>
-        {localStorage.token && localStorage.token.length > 10 ? (
-          <Link to="/logout">Logout</Link>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </nav>
-    </div>
-  );
-};
+	return (
+		<div>
+			<div class="navs">
+				<Link to="/">
+					<img src="../home-app-logo.png" height="200px" />{' '}
+				</Link>
+				<nav>
+					<Link to="/">Homes</Link>
+					<Link to="/new-home">Add Listing</Link>
+					{localStorage.token && localStorage.token.length > 10 ? (
+						<Link to="/logout">Log Out</Link>
+					) : (
+						<Link to="/login">Log In</Link>
+					)}
+				</nav>
+			</div>
+		</div>
+	)
+}
 
-export default Header;
+export default Header

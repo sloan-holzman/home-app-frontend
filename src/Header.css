@@ -1,0 +1,23 @@
+.navs,
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-self: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+link,
+a {
+	padding: 20px 30px;
+	border-bottom: 2px solid white;
+	border-width: thick;
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-underline-position: below;
+	text-decoration-color: #01449b;
+	border-bottom: 2px solid #012b60;
+	border-width: thick;
+}

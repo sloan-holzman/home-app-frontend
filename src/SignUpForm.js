@@ -5,6 +5,7 @@ import PasswordInput from "./PasswordInput";
 import axios from "axios";
 import Alert from "./Alert";
 import backend from "./BackendVariable";
+import "./SignUpForm.css";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -68,13 +69,6 @@ class SignUpForm extends React.Component {
       })
       .then(response => {
         console.log(response);
-        console.log(response.status);
-        // console.log(response.data);
-        if (response.status === 200) {
-          console.log("happy times");
-          return <Alert msg={"Thanks for signing up!"} />;
-          this.props.msg = "Thanks for signing up!";
-        }
         localStorage.token = response.data.token;
         console.log(localStorage.token);
         this.props.history.push("/");
@@ -88,43 +82,49 @@ class SignUpForm extends React.Component {
     const { errors, submitted } = this.state;
     const { email, password, confirmPassword } = this.state.user;
     const formStyle = {
-      background: "rgb(222, 222, 222)",
-      border: "rgb(0, 0, 0)",
-      width: "400px",
-      padding: "1em"
+      border: "1px solid #000000",
+      padding: "5px 50px",
+      width: "500px",
+      margin: "2px auto",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      backgroundColor: "white"
     };
     console.log("Alert");
     return submitted ? (
-      <Alert msg={"You smell"} />
+      <Alert msg={"Thanks for signing up!"} />
     ) : (
-      <div style={formStyle}>
-        <TextInput
-          htmlId="signup-form-email"
-          labelName="Email"
-          name="email"
-          required
-          error={errors.email}
-          onChange={this.onChange}
-        />
-        <PasswordInput
-          htmlId="signup-form-password"
-          name="password"
-          strengthPercentage={this.passwordStrength(password)}
-          showVisibilityToggle
-          maxLength={24}
-          error={errors.password}
-          onChange={this.onChange}
-        />
-        <PasswordInput
-          htmlId="signup-form-password"
-          name="confirmPassword"
-          showVisibilityToggle
-          maxLength={24}
-          error={errors.password}
-          onChange={this.onChange}
-          labelName="Confirm Password"
-        />
-        <input type="submit" value="Sign Up" onClick={this.onSubmit} />
+      <div className="form-spacer">
+        <div style={formStyle}>
+          <TextInput
+            htmlId="signup-form-email"
+            labelName="Email"
+            name="email"
+            required
+            error={errors.email}
+            onChange={this.onChange}
+          />
+          <PasswordInput
+            htmlId="signup-form-password"
+            name="password"
+            strengthPercentage={this.passwordStrength(password)}
+            showVisibilityToggle
+            maxLength={24}
+            error={errors.password}
+            onChange={this.onChange}
+          />
+          <PasswordInput
+            htmlId="signup-form-password"
+            name="confirmPassword"
+            showVisibilityToggle
+            maxLength={24}
+            error={errors.password}
+            onChange={this.onChange}
+            labelName="Confirm Password"
+          />
+          <input type="submit" value="Sign Up" onClick={this.onSubmit} />
+        </div>
       </div>
     );
   }
