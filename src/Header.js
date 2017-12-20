@@ -6,7 +6,9 @@ const Header = ({}) => {
 	return (
 		<div>
 			<div class="navs">
-				<img src="../home-app-logo.png" height="200px" />
+				<Link to="/">
+					<img src="../home-app-logo.png" height="200px" />{' '}
+				</Link>
 				<nav>
 					<Link to="/">Homes</Link>
 					<Link to="/new-home">Add Listing</Link>
