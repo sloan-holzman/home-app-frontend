@@ -34,16 +34,6 @@ class HomeShow extends React.Component {
   }
   getHome() {
     axios
-<<<<<<< HEAD
-    .get(`{backend}api/homes/${this.props.match.params.id}`)
-    .then(response => {
-      console.log(response.data)
-      this.setState({
-        home: response.data,
-        homeId:response.data._id
-      }, (()=> this.getCoordinates()))
-    })
-=======
       .get(`{backend}api/homes/${this.props.match.params.id}`)
       .then(response => {
         console.log(response.data);
@@ -55,7 +45,6 @@ class HomeShow extends React.Component {
           () => this.getCoordinates()
         );
       });
->>>>>>> 75a673787c2e982f1c7bf5197c8a19098f2fb536
   }
   getCoordinates() {
     axios
@@ -107,52 +96,6 @@ class HomeShow extends React.Component {
           <p>{price}</p>
           <p>
             {this.state.home.num_bed} beds - {this.state.home.num_bath} baths -{" "}
-            {this.state.home.sq_ft} sqft
-          </p>
-          {this.props.userId === this.state.home.owner_id ? (
-            <div>
-              <Link to={`/homes/${this.state.home._id}/edit`}>Edit Home</Link>
-              <br />
-              <Link to={`/homes/${this.state.home._id}/delete`}>
-                Delete Home
-              </Link>
-            </div>
-          ) : (
-            <p />
-          )}
-        </div>
-      );
-    } else {
-      console.log(this.state.center);
-      return <p>Loading...</p>;
-    }
-  }
-}
-export default HomeShow;
-home.num_bed} beds - {this.state.home.num_bath} baths -{" "}
-            {this.state.home.sq_ft} sqft
-          </p>
-          {this.props.userId === this.state.home.owner_id ? (
-            <div>
-              <Link to={`/homes/${this.state.home._id}/edit`}>Edit Home</Link>
-              <br />
-              <Link to={`/homes/${this.state.home._id}/delete`}>
-                Delete Home
-              </Link>
-            </div>
-          ) : (
-            <p />
-          )}
-        </div>
-      );
-    } else {
-      console.log(this.state.center);
-      return <p>Loading...</p>;
-    }
-  }
-}
-export default HomeShow;
-home.num_bed} beds - {this.state.home.num_bath} baths -{" "}
             {this.state.home.sq_ft} sqft
           </p>
           {this.props.userId === this.state.home.owner_id ? (
