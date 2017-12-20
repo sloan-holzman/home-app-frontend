@@ -4,6 +4,7 @@ import TextInput from "./TextInput";
 import PasswordInput from "./PasswordInput";
 import axios from "axios";
 import Alert from "./Alert";
+import backend from "./BackendVariable";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class SignUpForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios
-      .post("http://localhost:3001/signup", {
+      .post(`${backend}signup`, {
         email: this.state.user.email,
         password: this.state.user.password
       })
@@ -92,8 +93,9 @@ class SignUpForm extends React.Component {
       width: "400px",
       padding: "1em"
     };
+    console.log("Alert");
     return submitted ? (
-      <h2>{this.props.confirmationMessage}</h2>
+      <Alert msg={"Thanks for signing up!"} />
     ) : (
       <div style={formStyle}>
         <TextInput
@@ -135,7 +137,13 @@ SignUpForm.propTypes = {
 };
 
 // SignUpForm.defaultProps = {
+<<<<<<< HEAD
 //   confirmationMessage: <Alert msg={"Thanks for signing up!"} />
+=======
+//   confirmationMessage:
+//     "Thanks for signing up! You should receive an email confirmation shortly.",
+//   minPasswordLength: 8
+>>>>>>> master
 // };
 
 export default SignUpForm;
