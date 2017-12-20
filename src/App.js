@@ -155,7 +155,7 @@ class App extends Component {
                       children={
                         <LoginForm
                           {...props}
-                          // onSubmit={() => console.log("submitted!")}
+                          onSubmit={() => console.log("submitted!")}
                         />
                       }
                     />

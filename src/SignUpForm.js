@@ -58,7 +58,7 @@ class SignUpForm extends React.Component {
     event.preventDefault();
     const formIsValid = this.validate(this.state.user);
     if (formIsValid) {
-      // this.props.onSubmit(this.state.user);
+      this.props.onSubmit(this.state.user);
       this.setState({ submitted: true });
     }
     axios
@@ -95,7 +95,7 @@ class SignUpForm extends React.Component {
     };
     console.log("Alert");
     return submitted ? (
-      <Alert msg={"Thanks for signing up!"} />
+      <Alert msg={"You smell"} />
     ) : (
       <div style={formStyle}>
         <TextInput
@@ -137,13 +137,10 @@ SignUpForm.propTypes = {
 };
 
 // SignUpForm.defaultProps = {
-<<<<<<< HEAD
 //   confirmationMessage: <Alert msg={"Thanks for signing up!"} />
-=======
 //   confirmationMessage:
 //     "Thanks for signing up! You should receive an email confirmation shortly.",
 //   minPasswordLength: 8
->>>>>>> master
 // };
 
 export default SignUpForm;

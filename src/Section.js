@@ -1,4 +1,5 @@
 import React from "react";
+import Alert from "./Alert";
 
 const Section = ({ children, ...props }) => {
   const sectionStyle = {
@@ -6,7 +7,12 @@ const Section = ({ children, ...props }) => {
     border: "1px solid black"
   };
 
-  return <div style={sectionStyle}>{children}</div>;
+  return (
+    <div style={sectionStyle}>
+      <Alert />
+      {children}
+    </div>
+  );
 };
 
 export default Section;
