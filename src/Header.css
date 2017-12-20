@@ -1,5 +1,5 @@
 .navs,
-nav {
+.navs__links {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -9,7 +9,7 @@ nav {
 }
 link,
 a {
-	padding: 20px 30px;
+	padding: 10px 20px;
 	border-bottom: 2px solid white;
 	border-width: thick;
 	text-decoration: none;
@@ -21,4 +21,8 @@ a:hover {
 	text-decoration-color: #01449b;
 	border-bottom: 2px solid #012b60;
 	border-width: thick;
+}
+
+.navs {
+	flex: 0 0 auto;
 }

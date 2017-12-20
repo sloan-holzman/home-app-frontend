@@ -10,6 +10,7 @@ import DeleteHome from './DeleteHome.js'
 import SignUpForm from './SignUpForm.js'
 import Section from './Section.js'
 import axios from 'axios'
+import './App.css'
 import {
 	BrowserRouter as Router,
 	Route,
