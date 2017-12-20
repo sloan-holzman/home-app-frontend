@@ -1,3 +1,5 @@
+// code modified from: https://tomchentw.github.io/react-google-maps/
+
 import React from "react";
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
