@@ -1,31 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-
+import './Header.css'
 const Header = ({}) => {
-	const headerStyle = {
-		display: 'flex',
-		justifyContent: 'space-around'
-	}
-	const logButton = {
-		fontSize: '22px'
-	}
 	return (
 		<div>
-			<div style={logButton}>
-				{localStorage.token && localStorage.token.length > 10 ? (
-					<Link to="/logout">Logout</Link>
-				) : (
-					<Link to="/login">Login</Link>
-				)}
-			</div>
-			<div>
+			<div class="navs">
 				<img src="../home-app-logo.png" height="200px" />
+				<nav>
+					<Link to="/">Homes</Link>
+					<Link to="/new-home">Add Listing</Link>
+					{localStorage.token && localStorage.token.length > 10 ? (
+						<Link to="/logout">Log Out</Link>
+					) : (
+						<Link to="/login">Log In</Link>
+					)}
+				</nav>
 			</div>
-			<nav style={headerStyle}>
-				<Link to="/">Home</Link>
-				<Link to="/new-home">New Home</Link>
-			</nav>
 		</div>
 	)
 }

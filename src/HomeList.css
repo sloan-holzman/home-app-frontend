@@ -1,0 +1,11 @@
+.home-display {
+	border: 1px solid #000000;
+	width: 500px;
+	height: inherit;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 30px 30px;
+	padding: 20px 20px;
+}

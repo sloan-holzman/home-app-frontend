@@ -1,0 +1,20 @@
+.navs,
+link,
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-self: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+link,
+a {
+	padding: 20px 30px;
+}
+a:hover {
+	text-underline-position: below;
+	text-decoration-color: #d9dce0;
+	border-bottom: 4px solid #d9dce0;
+	border-width: thick;
+}

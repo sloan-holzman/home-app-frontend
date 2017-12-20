@@ -1,11 +1,9 @@
+link,
 a {
 	text-decoration: none;
 	color: #212223;
-	font-family: 'Barlow', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 22px;
-}
-a:hover {
-	color: #69acef;
 }
 
 img {
