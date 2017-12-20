@@ -11,7 +11,7 @@ class HomeList extends React.Component {
 	render() {
 		let homes = this.props.homes.map((home, i) => {
 			return (
-				<div class="home-display">
+				<div className="home-display">
 					<p className="home" key={i}>
 						{<HomeSummary home={home} />}
 					</p>

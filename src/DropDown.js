@@ -28,9 +28,9 @@ const DropDown = ({
 				name={name}
 				style={error && errorBorderStyle}
 				{...props}
-   >
+			>
 				<option value="Rent">Rent </option>
-				<option value="Buy">Buy </option>
+				<option value="Buy">Sale </option>
 			</select>
 			{children}
 			{error && errorMessageDiv}
