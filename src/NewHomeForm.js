@@ -125,8 +125,7 @@ class NewHomeForm extends React.Component {
 			border: '1px solid #000000',
 			padding: '5px 50px',
 			width: '500px',
-			margin: '2px 50px',
-			height: 'inherit',
+			margin: '2px auto',
 			display: 'flex',
 			flexDirection: 'column',
 			justifyContent: 'center',
@@ -135,94 +134,98 @@ class NewHomeForm extends React.Component {
 		return submitted ? (
 			<h2> {this.props.confirmationMessage} </h2>
 		) : (
-			<div style={formStyle}>
-				<h4>
-					<TextInput
-						labelName="Street Address:"
-						name="street_address"
-						placeholder="e.g. 111 River St."
-						required
-						error={errors.street_address}
-						onChange={this.onChange}
-					/>
+			<div className="form-container">
+				<div className="form-spacer"> </div>
+				<div style={formStyle}>
+					<h4>
+						<TextInput
+							labelName="Street Address:"
+							name="street_address"
+							placeholder="e.g. 111 River St."
+							required
+							error={errors.street_address}
+							onChange={this.onChange}
+						/>
 
-					<TextInput
-						labelName="Unit:"
-						name="unit"
-						placeholder="e.g. 14F"
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="City:"
-						name="city"
-						placeholder="e.g. Mclean"
-						required
-						error={errors.city}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="State:"
-						name="state"
-						placeholder="e.g. VA"
-						required
-						error={errors.state}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Zipcode:"
-						name="zipcode"
-						placeholder="e.g. 22222"
-						required
-						error={errors.zipcode}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bedrooms:"
-						name="num_bed"
-						placeholder="e.g. 2"
-						required
-						error={errors.num_bed}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bathrooms:"
-						name="num_bath"
-						placeholder="e.g. 2"
-						required
-						error={errors.num_bath}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Sqft:"
-						name="sq_ft"
-						placeholder="e.g. 700"
-						required
-						error={errors.sq_ft}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Image Url:"
-						name="img_url"
-						placeholder="https://yourhomephoto.jpg"
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Price: $"
-						name="price_range"
-						placeholder="e.g. $ 1000 "
-						required
-						error={errors.price_range}
-						onChange={this.onChange}
-					/>
-					<DropDown
-						labelName=" Rent or Sale ?"
-						name="type_rent_buy"
-						required
-						error={errors.type_rent_buy}
-						onChange={this.onChange}
-					/>
-				</h4>
-				<input type="submit" value="Submit" onClick={this.onSubmit} />
+						<TextInput
+							labelName="Unit:"
+							name="unit"
+							placeholder="e.g. 14F"
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="City:"
+							name="city"
+							placeholder="e.g. Mclean"
+							required
+							error={errors.city}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="State:"
+							name="state"
+							placeholder="e.g. VA"
+							required
+							error={errors.state}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Zipcode:"
+							name="zipcode"
+							placeholder="e.g. 22222"
+							required
+							error={errors.zipcode}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Bedrooms:"
+							name="num_bed"
+							placeholder="e.g. 2"
+							required
+							error={errors.num_bed}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Bathrooms:"
+							name="num_bath"
+							placeholder="e.g. 2"
+							required
+							error={errors.num_bath}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Sqft:"
+							name="sq_ft"
+							placeholder="e.g. 700"
+							required
+							error={errors.sq_ft}
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Image Url:"
+							name="img_url"
+							placeholder="https://yourhomephoto.jpg"
+							onChange={this.onChange}
+						/>
+						<TextInput
+							labelName="Price: $"
+							name="price_range"
+							placeholder="e.g. $ 1000 "
+							required
+							error={errors.price_range}
+							onChange={this.onChange}
+						/>
+						<DropDown
+							labelName=" Rent or Sale ?"
+							name="type_rent_buy"
+							required
+							error={errors.type_rent_buy}
+							onChange={this.onChange}
+						/>
+					</h4>
+					<input type="submit" value="Submit" onClick={this.onSubmit} />
+					<div class="form-spacer" />
+				</div>
 			</div>
 		)
 	}

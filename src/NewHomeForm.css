@@ -10,3 +10,7 @@ input {
 	display: flex;
 	flex-direction: column;
 }
+
+.form-spacer {
+	min-height: 20px;
+}

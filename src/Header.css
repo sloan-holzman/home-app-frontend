@@ -15,7 +15,7 @@ a {
 }
 a:hover {
 	text-underline-position: below;
-	text-decoration-color: #d9dce0;
-	border-bottom: 2px solid #d9dce0;
+	text-decoration-color: #01449b;
+	border-bottom: 2px solid #012b60;
 	border-width: thick;
 }

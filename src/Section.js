@@ -2,7 +2,7 @@ import React from 'react'
 
 const Section = ({ children, ...props }) => {
 	const sectionStyle = {
-		backgroundColor: '#ebeef4'
+		backgroundColor: '#deebfc'
 	}
 
 	return <div style={sectionStyle}>{children}</div>
