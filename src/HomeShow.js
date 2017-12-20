@@ -17,27 +17,33 @@ class HomeShow extends React.Component {
 						? `$${home.price_range} per month`
 						: `Price: ${home.price_range}`
 				return (
-					<div key={i}>
-						<img src={home.img_url} alt=" Home Image" />
-						<h3>
-							{home.street_address} {unit}
-						</h3>
-						<p>
-							{home.city}, {home.state} {home.zipcode}
-						</p>
-						<p>{price}</p>
-						<p>
-							{home.num_bed} beds - {home.num_bath} baths - {home.sq_ft} sqft
-						</p>
-						{this.props.userId === home.owner_id ? (
-							<div>
-								<Link to={`/homes/${home._id}/edit`}>Edit Home</Link>
-								<br />
-								<Link to={`/homes/${home._id}/delete`}>Delete Home</Link>
+					<div>
+						<div className="form-spacer"> </div>
+						<div className="home-show">
+							<div key={i}>
+								<img src={home.img_url} alt=" Home Image" />
+								<h3>
+									{home.street_address} {unit}
+								</h3>
+								<p>
+									{home.city}, {home.state} {home.zipcode}
+								</p>
+								<p>{price}</p>
+								<p>
+									{home.num_bed} beds - {home.num_bath} baths - {home.sq_ft}{' '}
+									sqft
+								</p>
+								{this.props.userId === home.owner_id ? (
+									<div>
+										<Link to={`/homes/${home._id}/edit`}>Edit Home</Link>
+										<br />
+										<Link to={`/homes/${home._id}/delete`}>Delete Home</Link>
+									</div>
+								) : (
+									<p />
+								)}
 							</div>
-						) : (
-							<p />
-						)}
+						</div>
 					</div>
 				)
 			}
