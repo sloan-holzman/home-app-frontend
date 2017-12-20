@@ -62,7 +62,7 @@ class SignUpForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios
-      .post("http://localhost:3001/signup", {
+      .post(`${backend}signup`, {
         email: this.state.user.email,
         password: this.state.user.password
       })

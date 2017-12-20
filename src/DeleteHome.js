@@ -18,7 +18,7 @@ class DeleteHome extends React.Component {
 
   deleteHome() {
     axios
-      .delete(`http://localhost:3001/api/homes/${this.props.match.params.id}`, {
+      .delete(`${backend}api/homes/${this.props.match.params.id}`, {
         headers: { token: localStorage.token }
       })
       .then(response => {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header.js";
 import NewHomeForm from "./NewHomeForm.js";
-import EditHomeForm from "./EditHomeForm.js"
+import EditHomeForm from "./EditHomeForm.js";
 import HomeList from "./HomeList.js";
 import HomeShow from "./HomeShow.js";
 import LoginForm from "./LoginForm.js";
@@ -30,7 +30,7 @@ class App extends Component {
 
   retrieveHomes() {
     axios
-      .get("http://localhost:3001/api/homes", {
+      .get(`${backend}api/homes`, {
         headers: { token: localStorage.token }
       })
       .then(response => {

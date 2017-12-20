@@ -78,7 +78,7 @@ class NewHomeForm extends React.Component {
     }
     axios(
 			{ method: 'POST',
-			url: `http://localhost:3001/api/homes`,
+			url: `${backend}api/homes/`,
 			headers: {token: localStorage.token},
 			data: {
   			street_address: this.state.home.street_address,

@@ -53,9 +53,8 @@ class HomeShow extends React.Component {
 
 
   getCoordinates(){
-    console.log()
     axios
-    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.home.street_address}${this.state.home.street_address}${this.state.home.street_address}${this.state.home.street_address}&key=AIzaSyAWaxlS3Hg-U3SLUNPq6MjB2EKQp4eusps`)
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.home.street_address}${this.state.home.city}${this.state.home.state}${this.state.home.zipcode}&key=AIzaSyAWaxlS3Hg-U3SLUNPq6MjB2EKQp4eusps`)
     .then(response => {
       if (response.data.status !== "ZERO_RESULTS") {
       console.log(response)

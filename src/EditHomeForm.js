@@ -1,76 +1,80 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import TextInput from './TextInput'
-import axios from 'axios'
-import DropDown from './DropDown'
+import React from "react";
+import PropTypes from "prop-types";
+import TextInput from "./TextInput";
+import axios from "axios";
+import DropDown from "./DropDown";
+import backend from "./BackendVariable";
 
 class EditHomeForm extends React.Component {
-	constructor(props) {
-		super(props)
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			home: {
-				street_address: '',
-				unit: '',
-				city: '',
-				state: '',
-				zipcode: '',
-				num_bed: '',
-				num_bath: '',
-				sq_ft: '',
-				img_url: '',
-				price_range: '',
-				type_rent_buy: 'Rent'
-			},
-			errors: {},
-			submitted: false,
-			homeId: ''
-		}
-		this.onChange = this.onChange.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
-	}
-	onChange(event) {
-		const home = this.state.home
-		home[event.target.name] = event.target.value
-		console.log(event.target.value)
-		this.setState({ home })
-	}
+    this.state = {
+      home: {
+        street_address: "",
+        unit: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        num_bed: "",
+        num_bath: "",
+        sq_ft: "",
+        img_url: "",
+        price_range: "",
+        type_rent_buy: "Rent"
+      },
+      errors: {},
+      submitted: false,
+      homeId: ""
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(event) {
+    const home = this.state.home;
+    home[event.target.name] = event.target.value;
+    console.log(event.target.value);
+    this.setState({ home });
+  }
 
-	componentDidMount() {
-			axios
-				.get(`http://localhost:3001/api/homes/${this.props.match.params.id}`)
-				.then(response => {
-					console.log(response.data)
-					this.setState({
-					 home: response.data,
-					 homeId:response.data._id
-				 }, ()=> console.log(this.state.home))
-				})
-	}
+  componentDidMount() {
+    axios
+      .get(`${backend}api/homes/${this.props.match.params.id}`)
+      .then(response => {
+        console.log(response.data);
+        this.setState(
+          {
+            home: response.data,
+            homeId: response.data._id
+          },
+          () => console.log(this.state.home)
+        );
+      });
+  }
 
-	validate({
-		street_address,
-		unit,
-		city,
-		state,
-		zipcode,
-		num_bed,
-		num_bath,
-		sq_ft,
-		img_url,
-		price_range,
-		type_rent_buy
-	}) {
-		const errors = {}
+  validate({
+    street_address,
+    unit,
+    city,
+    state,
+    zipcode,
+    num_bed,
+    num_bath,
+    sq_ft,
+    img_url,
+    price_range,
+    type_rent_buy
+  }) {
+    const errors = {};
 
-		if (!street_address) errors.street_address = 'Street address required.'
-		if (!city) errors.city = 'City required.'
-		if (!state) errors.state = 'State required.'
-		if (!zipcode) errors.zipcode = 'Zipcode required.'
-		if (!num_bed) errors.num_bed = 'Number of beds required.'
-		if (!num_bath) errors.num_bath = 'Number of bathrooms required.'
-		if (!price_range) errors.price_range = 'Price range required.'
-		if (!type_rent_buy) errors.type_rent_buy = 'Field required.'
+    if (!street_address) errors.street_address = "Street address required.";
+    if (!city) errors.city = "City required.";
+    if (!state) errors.state = "State required.";
+    if (!zipcode) errors.zipcode = "Zipcode required.";
+    if (!num_bed) errors.num_bed = "Number of beds required.";
+    if (!num_bath) errors.num_bath = "Number of bathrooms required.";
+    if (!price_range) errors.price_range = "Price range required.";
+    if (!type_rent_buy) errors.type_rent_buy = "Field required.";
 
 		this.setState({ errors })
 		const formIsValid = Object.getOwnPropertyNames(errors).length === 0
@@ -85,7 +89,7 @@ class EditHomeForm extends React.Component {
 		}
 		axios(
 			{ method: 'PUT',
-			url: `http://localhost:3001/api/homes/${this.props.match.params.id}`,
+			url: `${backend}api/homes/${this.props.match.params.id}`,
 			headers: {token: localStorage.token},
 			data: {
 				street_address: this.state.home.street_address,
@@ -116,121 +120,122 @@ class EditHomeForm extends React.Component {
 			})
 	}
 
-	render() {
-		const { errors, submitted } = this.state
-		const formStyle = {
-			background: 'rgb(222, 222, 222)',
-			border: 'rgb(0, 0, 0)',
-			width: '400px',
-			padding: '1em'
-		}
+  render() {
+    const { errors, submitted } = this.state;
+    const formStyle = {
+      background: "rgb(222, 222, 222)",
+      border: "rgb(0, 0, 0)",
+      width: "400px",
+      padding: "1em"
+    };
 
-		let home = this.props.homes.find(home=> home._id === this.props.match.params.id)
+    let home = this.props.homes.find(
+      home => home._id === this.props.match.params.id
+    );
 
     if (!home) {
-      return (
-        <p>Loading...</p>
-      )
+      return <p>Loading...</p>;
     } else {
-			return (
-				<div style={formStyle}>
-					<h1> Edit Home </h1>
-					<TextInput
-						labelName="Street Address:"
-						name="street_address"
-						defaultValue={home.street_address}
-						required
-						error={errors.street_address}
-						onChange={this.onChange}
-						ref="street_address"
-					/>
-					<TextInput
-						labelName="Unit:"
-						name="unit"
-						defaultValue={home.unit}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="City:"
-						name="city"
-						defaultValue={home.city}
-						required
-						error={errors.city}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="State:"
-						name="state"
-						defaultValue={home.state}
-						required
-						error={errors.state}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Zipcode:"
-						name="zipcode"
-						defaultValue={home.zipcode}
-						required
-						error={errors.zipcode}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bedrooms:"
-						name="num_bed"
-						defaultValue={home.num_bed}
-						required
-						error={errors.num_bed}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Bathrooms:"
-						name="num_bath"
-						defaultValue={home.num_bath}
-						required
-						error={errors.num_bath}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Sqft:"
-						name="sq_ft"
-						defaultValue={home.sq_ft}
-						required
-						error={errors.sq_ft}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Image Url:"
-						name="img_url"
-						defaultValue={home.img_url}
-						onChange={this.onChange}
-					/>
-					<TextInput
-						labelName="Price range: $"
-						name="price_range"
-						defaultValue={home.price_range}
-						required
-						error={errors.price_range}
-						onChange={this.onChange}
-					/>
-					<DropDown
-						labelName=" Property for rent or sell ?"
-						name="type_rent_buy"
-						defaultValue={home.type_rent_buy}
-						required
-						error={errors.type_rent_buy}
-						onChange={this.onChange}
-					/>
-					<input type="submit" value="Submit" onClick={this.onSubmit} />
-				</div>)
-		}
-	}
+      return (
+        <div style={formStyle}>
+          <h1> Edit Home </h1>
+          <TextInput
+            labelName="Street Address:"
+            name="street_address"
+            defaultValue={home.street_address}
+            required
+            error={errors.street_address}
+            onChange={this.onChange}
+            ref="street_address"
+          />
+          <TextInput
+            labelName="Unit:"
+            name="unit"
+            defaultValue={home.unit}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="City:"
+            name="city"
+            defaultValue={home.city}
+            required
+            error={errors.city}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="State:"
+            name="state"
+            defaultValue={home.state}
+            required
+            error={errors.state}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Zipcode:"
+            name="zipcode"
+            defaultValue={home.zipcode}
+            required
+            error={errors.zipcode}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Bedrooms:"
+            name="num_bed"
+            defaultValue={home.num_bed}
+            required
+            error={errors.num_bed}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Bathrooms:"
+            name="num_bath"
+            defaultValue={home.num_bath}
+            required
+            error={errors.num_bath}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Sqft:"
+            name="sq_ft"
+            defaultValue={home.sq_ft}
+            required
+            error={errors.sq_ft}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Image Url:"
+            name="img_url"
+            defaultValue={home.img_url}
+            onChange={this.onChange}
+          />
+          <TextInput
+            labelName="Price range: $"
+            name="price_range"
+            defaultValue={home.price_range}
+            required
+            error={errors.price_range}
+            onChange={this.onChange}
+          />
+          <DropDown
+            labelName=" Property for rent or sell ?"
+            name="type_rent_buy"
+            defaultValue={home.type_rent_buy}
+            required
+            error={errors.type_rent_buy}
+            onChange={this.onChange}
+          />
+          <input type="submit" value="Submit" onClick={this.onSubmit} />
+        </div>
+      );
+    }
+  }
 }
 
 EditHomeForm.propTypes = {
-	confirmationMessage: PropTypes.string,
-	onSubmit: PropTypes.func.isRequired
-}
+  confirmationMessage: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired
+};
 EditHomeForm.defaultProps = {
-	confirmationMessage: 'Home has been submitted!'
-}
-export default EditHomeForm
+  confirmationMessage: "Home has been submitted!"
+};
+export default EditHomeForm;
