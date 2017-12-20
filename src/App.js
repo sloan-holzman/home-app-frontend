@@ -18,11 +18,11 @@ import {
 } from "react-router-dom";
 import backend from "./BackendVariable";
 
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-} else {
-  axios.defaults.headers.common["token"] = "";
-}
+// if (localStorage.token) {
+//   axios.defaults.headers.common["token"] = localStorage.token;
+// } else {
+//   axios.defaults.headers.common["token"] = "";
+// }
 
 class App extends Component {
   constructor(props) {

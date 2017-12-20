@@ -5,11 +5,11 @@ import axios from "axios";
 import DropDown from "./DropDown";
 import backend from "./BackendVariable";
 
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-} else {
-  axios.defaults.headers.common["token"] = "";
-}
+// if (localStorage.token) {
+//   axios.defaults.headers.common["token"] = localStorage.token;
+// } else {
+//   axios.defaults.headers.common["token"] = "";
+// }
 
 class NewHomeForm extends React.Component {
   constructor(props) {

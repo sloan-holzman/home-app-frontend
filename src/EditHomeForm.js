@@ -4,11 +4,11 @@ import TextInput from './TextInput'
 import axios from 'axios'
 import DropDown from './DropDown'
 
-if (localStorage.token) {
-	axios.defaults.headers.common['token'] = localStorage.token
-} else {
-	axios.defaults.headers.common['token'] = ''
-}
+// if (localStorage.token) {
+// 	axios.defaults.headers.common['token'] = localStorage.token
+// } else {
+// 	axios.defaults.headers.common['token'] = ''
+// }
 
 class EditHomeForm extends React.Component {
 	constructor(props) {

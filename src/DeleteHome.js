@@ -2,11 +2,11 @@ import React from "react";
 import axios from "axios";
 import backend from "./BackendVariable";
 
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-} else {
-  axios.defaults.headers.common["token"] = "";
-}
+// if (localStorage.token) {
+//   axios.defaults.headers.common["token"] = localStorage.token;
+// } else {
+//   axios.defaults.headers.common["token"] = "";
+// }
 
 class DeleteHome extends React.Component {
   constructor(props) {
