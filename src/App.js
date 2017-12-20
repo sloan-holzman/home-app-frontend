@@ -18,12 +18,6 @@ import {
 } from "react-router-dom";
 import backend from "./BackendVariable";
 
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-} else {
-  axios.defaults.headers.common["token"] = "";
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +30,9 @@ class App extends Component {
 
   retrieveHomes() {
     axios
-      .get(`${backend}api/homes`)
+      .get(`${backend}api/homes`, {
+        headers: { token: localStorage.token }
+      })
       .then(response => {
         console.log("dogs");
         this.setState({

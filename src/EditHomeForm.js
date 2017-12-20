@@ -5,12 +5,6 @@ import axios from "axios";
 import DropDown from "./DropDown";
 import backend from "./BackendVariable";
 
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-} else {
-  axios.defaults.headers.common["token"] = "";
-}
-
 class EditHomeForm extends React.Component {
   constructor(props) {
     super(props);
@@ -82,45 +76,49 @@ class EditHomeForm extends React.Component {
     if (!price_range) errors.price_range = "Price range required.";
     if (!type_rent_buy) errors.type_rent_buy = "Field required.";
 
-    this.setState({ errors });
-    const formIsValid = Object.getOwnPropertyNames(errors).length === 0;
-    return formIsValid;
-  }
-  onSubmit(event) {
-    event.preventDefault();
-    const formIsValid = this.validate(this.state.home);
-    if (formIsValid) {
-      this.props.onSubmit(this.state.home);
-      this.setState({ submitted: true });
-    }
-    axios
-      .put(`${backend}api/homes/${this.props.match.params.id}`, {
-        street_address: this.state.home.street_address,
-        unit: this.state.home.unit,
-        city: this.state.home.city,
-        state: this.state.home.state,
-        zipcode: this.state.home.zipcode,
-        num_bed: this.state.home.num_bed,
-        num_bath: this.state.home.num_bath,
-        sq_ft: this.state.home.sq_ft,
-        img_url: this.state.home.img_url,
-        price_range: this.state.home.price_range,
-        type_rent_buy: this.state.home.type_rent_buy
-      })
-      .then(response => {
-        console.log(response);
-        console.log(response.data._id);
-        let homeId = response.data._id;
-        this.props.retrieveHomes();
-        return homeId;
-      })
-      .then(homeId => {
-        this.props.history.push(`/homes/${this.state.homeId}`);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+		this.setState({ errors })
+		const formIsValid = Object.getOwnPropertyNames(errors).length === 0
+		return formIsValid
+	}
+	onSubmit(event) {
+		event.preventDefault()
+		const formIsValid = this.validate(this.state.home)
+		if (formIsValid) {
+			this.props.onSubmit(this.state.home)
+			this.setState({ submitted: true })
+		}
+		axios(
+			{ method: 'PUT',
+			url: `${backend}api/homes/${this.props.match.params.id}`,
+			headers: {token: localStorage.token},
+			data: {
+				street_address: this.state.home.street_address,
+				unit: this.state.home.unit,
+				city: this.state.home.city,
+				state: this.state.home.state,
+				zipcode: this.state.home.zipcode,
+				num_bed: this.state.home.num_bed,
+				num_bath: this.state.home.num_bath,
+				sq_ft: this.state.home.sq_ft,
+				img_url: this.state.home.img_url,
+				price_range: this.state.home.price_range,
+				type_rent_buy: this.state.home.type_rent_buy
+			 }
+		})
+			.then(response => {
+				console.log(response)
+				console.log(response.data._id)
+				let homeId = response.data._id
+				this.props.retrieveHomes()
+				return homeId
+			})
+			.then(homeId => {
+				this.props.history.push(`/homes/${this.state.homeId}`)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
 
   render() {
     const { errors, submitted } = this.state;
