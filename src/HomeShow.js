@@ -18,7 +18,7 @@ class HomeShow extends React.Component {
 						: `Price: ${home.price_range}`
 				return (
 					<div key={i}>
-						<img src={home.img_url} alt={home.street_address} />
+						<img src={home.img_url} alt=" Home Image" />
 						<h3>
 							{home.street_address} {unit}
 						</h3>

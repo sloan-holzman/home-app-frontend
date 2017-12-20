@@ -1,5 +1,4 @@
 .navs,
-link,
 nav {
 	display: flex;
 	flex-direction: row;
@@ -11,10 +10,12 @@ nav {
 link,
 a {
 	padding: 20px 30px;
+	border-bottom: 2px solid white;
+	border-width: thick;
 }
 a:hover {
 	text-underline-position: below;
 	text-decoration-color: #d9dce0;
-	border-bottom: 4px solid #d9dce0;
+	border-bottom: 2px solid #d9dce0;
 	border-width: thick;
 }

@@ -122,21 +122,21 @@ class NewHomeForm extends React.Component {
 			type_rent_buy
 		} = this.state.home
 		const formStyle = {
-			background: '#ffffff',
-			border: '2px solid #01153d',
-			padding: '20px 25px',
+			border: '1px solid #000000',
+			padding: '5px 50px',
 			width: '500px',
-			margin: '50px 450px',
+			margin: '2px 50px',
 			height: 'inherit',
 			display: 'flex',
 			flexDirection: 'column',
-			justifyContent: 'center'
+			justifyContent: 'center',
+			backgroundColor: 'white'
 		}
 		return submitted ? (
 			<h2> {this.props.confirmationMessage} </h2>
 		) : (
-			<div>
-				<div style={formStyle}>
+			<div style={formStyle}>
+				<h4>
 					<TextInput
 						labelName="Street Address:"
 						name="street_address"
@@ -207,7 +207,7 @@ class NewHomeForm extends React.Component {
 						onChange={this.onChange}
 					/>
 					<TextInput
-						labelName="Price range: $"
+						labelName="Price: $"
 						name="price_range"
 						placeholder="e.g. $ 1000 "
 						required
@@ -215,15 +215,14 @@ class NewHomeForm extends React.Component {
 						onChange={this.onChange}
 					/>
 					<DropDown
-						labelName=" Property for rent or sale ?"
+						labelName=" Rent or Sale ?"
 						name="type_rent_buy"
 						required
 						error={errors.type_rent_buy}
 						onChange={this.onChange}
 					/>
-
-					<input type="submit" value="Submit" onClick={this.onSubmit} />
-				</div>
+				</h4>
+				<input type="submit" value="Submit" onClick={this.onSubmit} />
 			</div>
 		)
 	}

@@ -8,10 +8,16 @@ class HomeSummary extends React.Component {
 
 	render() {
 		console.log(this.props)
+		const imageStyle = {
+			border: '1px solid #000000',
+			margin: 'auto 20px'
+		}
 		return (
 			<div>
 				<Link className="content-link" to={`/homes/${this.props.home._id}`}>
-					<img src={this.props.home.img_url} />
+					<div style={imageStyle}>
+						<img src={this.props.home.img_url} alt="Home Image" />
+					</div>
 					<div className="content">
 						<h3>Address </h3>
 						<p>
