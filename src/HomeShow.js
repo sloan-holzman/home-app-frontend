@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MyMapComponent from "./MyMapComponent.js";
-import axios from "axios";
+import axios from "axios-jsonp-pro";
 import backend from "./BackendVariable";
+
 
 class HomeShow extends React.Component {
   constructor(props) {
@@ -30,9 +31,10 @@ class HomeShow extends React.Component {
     };
     this.getHome = this.getHome.bind(this);
     this.getCoordinates = this.getCoordinates.bind(this);
+    this.getYelp = this.getYelp.bind(this);
   }
   componentDidMount() {
-    this.getHome();
+    this.getYelp();
   }
   getHome() {
     axios
@@ -48,6 +50,17 @@ class HomeShow extends React.Component {
         );
       });
   }
+
+  getYelp() {
+    axios.jsonp('https://api.yelp.com/v3/businesses/search?latitude=38.9188941&longitude=-77.0332222&radius=40000&categories=basketballcourts',{
+    params: {
+      Authorization: "Bearer fTEwumdv7903wNWhpRm6kOdygyKH3PPQETvGnmF3wwTRKgnwHbFgH20Hu4AkZyiLvyWWJ_leC9_lcYFqpyPHXmqTrcAzUQXyF2C_ol6QPR76z9t1Way2KPh_OyYzWnYx"
+    }
+  })
+    .then((ret) => console.log(ret.body))
+  }
+
+
   getCoordinates() {
     axios
       .get(
