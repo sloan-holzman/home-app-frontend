@@ -81,22 +81,13 @@ class SignUpForm extends React.Component {
 	render() {
 		const { errors, submitted } = this.state
 		const { email, password, confirmPassword } = this.state.user
-		const formStyle = {
-			border: '1px solid #000000',
-			padding: '5px 50px',
-			width: '500px',
-			margin: '2px auto',
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			backgroundColor: 'white'
-		}
+
 		console.log('Alert')
 		return submitted ? (
 			<Alert msg={'Thanks for signing up!'} />
 		) : (
-			<div className="form-spacer">
-				<div style={formStyle}>
+			<div>
+				<div className="form-style">
 					<TextInput
 						htmlId="signup-form-email"
 						labelName="Email"

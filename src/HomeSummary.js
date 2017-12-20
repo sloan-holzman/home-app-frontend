@@ -19,7 +19,7 @@ class HomeSummary extends React.Component {
 						<img src={this.props.home.img_url} alt="Home Image" />
 					</div>
 					<div className="content">
-						<h3>Address </h3>
+						<h3>Address</h3>
 						<p>
 							{this.props.home.street_address}, <br />
 							{this.props.home.unit}

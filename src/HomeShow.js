@@ -78,17 +78,17 @@ class HomeShow extends React.Component {
 					: `Price: ${this.state.home.price_range}`
 			return (
 				<div>
-					<div className="form-spacer"> </div>
 					<div className="home-show">
-						<img
-							src={this.state.home.img_url}
-							alt={this.state.home.street_address}
-						/>
-						{'lat' in this.state.center ? (
-							<MyMapComponent isMarkerShown center={this.state.center} />
-						) : (
-							<p />
-						)}
+						<div className="image">
+							<img src={this.state.home.img_url} alt="Home Image" />
+						</div>
+						<div className="map">
+							{'lat' in this.state.center ? (
+								<MyMapComponent isMarkerShown center={this.state.center} />
+							) : (
+								<p />
+							)}
+						</div>
 						<h3>
 							{this.state.home.street_address}
 							{unit}
@@ -103,9 +103,8 @@ class HomeShow extends React.Component {
 							- {this.state.home.sq_ft} sqft
 						</p>
 						{this.props.userId === this.state.home.owner_id ? (
-							<div>
+							<div className="buttom">
 								<Link to={`/homes/${this.state.home._id}/edit`}>Edit Home</Link>
-								<br />
 								<Link to={`/homes/${this.state.home._id}/delete`}>
 									Delete Home
 								</Link>
