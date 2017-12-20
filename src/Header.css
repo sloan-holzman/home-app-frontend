@@ -12,6 +12,8 @@ a {
 	padding: 20px 30px;
 	border-bottom: 2px solid white;
 	border-width: thick;
+	text-decoration: none;
+	color: black;
 }
 a:hover {
 	text-underline-position: below;

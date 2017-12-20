@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import PasswordInput from './PasswordInput'
 import axios from 'axios'
+import Alert from './Alert'
+import backend from './BackendVariable'
 import './SignUpForm.css'
 
 class SignUpForm extends React.Component {
@@ -61,7 +63,7 @@ class SignUpForm extends React.Component {
 			this.setState({ submitted: true })
 		}
 		axios
-			.post('http://localhost:3001/signup', {
+			.post(`${backend}signup`, {
 				email: this.state.user.email,
 				password: this.state.user.password
 			})
@@ -89,11 +91,11 @@ class SignUpForm extends React.Component {
 			justifyContent: 'center',
 			backgroundColor: 'white'
 		}
+		console.log('Alert')
 		return submitted ? (
-			<h2>{this.props.confirmationMessage}</h2>
+			<Alert msg={'Thanks for signing up!'} />
 		) : (
-			<div>
-				<div className="form-spacer" />
+			<div className="form-spacer">
 				<div style={formStyle}>
 					<TextInput
 						htmlId="signup-form-email"
@@ -129,15 +131,15 @@ class SignUpForm extends React.Component {
 }
 
 SignUpForm.propTypes = {
-	confirmationMessage: PropTypes.string,
+	// confirmationMessage: PropTypes.string,
 	onSubmit: PropTypes.func.isRequired,
 	minPasswordLength: PropTypes.number
 }
 
-SignUpForm.defaultProps = {
-	confirmationMessage:
-		'Thanks for signing up! You should receive an email confirmation shortly.',
-	minPasswordLength: 8
-}
+// SignUpForm.defaultProps = {
+//   confirmationMessage:
+//     "Thanks for signing up! You should receive an email confirmation shortly.",
+//   minPasswordLength: 8
+// };
 
 export default SignUpForm

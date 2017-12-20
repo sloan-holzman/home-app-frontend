@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header.js'
 import NewHomeForm from './NewHomeForm.js'
+import EditHomeForm from './EditHomeForm.js'
 import HomeList from './HomeList.js'
 import HomeShow from './HomeShow.js'
 import LoginForm from './LoginForm.js'
@@ -15,13 +16,7 @@ import {
 	Redirect,
 	Switch
 } from 'react-router-dom'
-import './App.css'
-
-if (localStorage.token) {
-	axios.defaults.headers.common['token'] = localStorage.token
-} else {
-	axios.defaults.headers.common['token'] = ''
-}
+import backend from './BackendVariable'
 
 class App extends Component {
 	constructor(props) {
@@ -35,7 +30,9 @@ class App extends Component {
 
 	retrieveHomes() {
 		axios
-			.get('http://localhost:3001/api/homes')
+			.get(`${backend}api/homes`, {
+				headers: { token: localStorage.token }
+			})
 			.then(response => {
 				console.log('dogs')
 				this.setState({
@@ -105,6 +102,24 @@ class App extends Component {
 													userId={this.state.userId}
 													homes={this.state.homes}
 													retrieveHomes={this.retrieveHomes}
+													{...props}
+												/>
+											}
+										/>
+									)
+								}}
+							/>
+							<Route
+								path="/homes/:id/edit"
+								render={props => {
+									return (
+										<Section
+											children={
+												<EditHomeForm
+													retrieveHomes={this.retrieveHomes}
+													userId={this.state.userId}
+													homes={this.state.homes}
+													onSubmit={() => console.log('Submitted!')}
 													{...props}
 												/>
 											}

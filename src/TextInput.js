@@ -10,6 +10,7 @@ const TextInput = ({
 	value,
 	name,
 	onChange,
+	onLoad,
 	// children is a special prop type.  if you want to include any special components/jsx inside the component below
 	children,
 	error,

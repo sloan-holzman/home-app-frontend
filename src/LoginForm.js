@@ -4,6 +4,8 @@ import TextInput from './TextInput'
 import PasswordInput from './PasswordInput'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import backend from './BackendVariable'
+
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props)
@@ -48,7 +50,7 @@ class LoginForm extends React.Component {
 			this.setState({ submitted: true })
 		}
 		axios
-			.post('http://localhost:3001/login', {
+			.post(`${backend}login`, {
 				email: this.state.user.email,
 				password: this.state.user.password
 			})
