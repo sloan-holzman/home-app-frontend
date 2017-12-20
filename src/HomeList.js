@@ -1,29 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import HomeSummary from './HomeSummary'
-import './HomeList.css'
+import React from "react";
+import PropTypes from "prop-types";
+import HomeSummary from "./HomeSummary";
+import "./HomeList.css";
+import Section from "./Section";
 
 class HomeList extends React.Component {
-	constructor(props) {
-		super(props)
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	render() {
-		let homes = this.props.homes.map((home, i) => {
-			return (
-				<div className="home-display">
-					<p className="home" key={i}>
-						{<HomeSummary home={home} />}
-					</p>
-				</div>
-			)
-		})
-		return (
-			<div>
-				<p>{homes}</p>
-			</div>
-		)
-	}
+  render() {
+    let homes = this.props.homes.map((home, i) => {
+      return (
+        <div className="home-display">
+          <p className="home" key={i}>
+            {<HomeSummary home={home} />}
+          </p>
+        </div>
+      );
+    });
+    return (
+      <Section>
+        <div>
+          <p>{homes}</p>
+        </div>
+      </Section>
+    );
+  }
 }
 
-export default HomeList
+export default HomeList;
