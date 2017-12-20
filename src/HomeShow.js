@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MyMapComponent from "./MyMapComponent.js";
 import axios from "axios";
-
 class HomeShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       home: {
         _id: "",
@@ -31,11 +29,9 @@ class HomeShow extends React.Component {
     this.getHome = this.getHome.bind(this);
     this.getCoordinates = this.getCoordinates.bind(this);
   }
-
   componentDidMount() {
     this.getHome();
   }
-
   getHome() {
     axios
       .get(`{backend}api/homes/${this.props.match.params.id}`)
@@ -50,7 +46,6 @@ class HomeShow extends React.Component {
         );
       });
   }
-
   getCoordinates() {
     axios
       .get(
@@ -72,7 +67,6 @@ class HomeShow extends React.Component {
         }
       });
   }
-
   render() {
     if (this.state.home) {
       let unit = this.state.home.unit ? `, ${this.state.home.unit}` : "";
@@ -91,7 +85,6 @@ class HomeShow extends React.Component {
           ) : (
             <p />
           )}
-
           <h3>
             {this.state.home.street_address}
             {unit}
@@ -124,8 +117,16 @@ class HomeShow extends React.Component {
     }
   }
 }
-
 export default HomeShow;
+home.num_bed} beds - {this.state.home.num_bath} baths -{" "}
+            {this.state.home.sq_ft} sqft
+          </p>
+          {this.props.userId === this.state.home.owner_id ? (
+            <div>
+              <Link to={`/homes/${this.state.home._id}/edit`}>Edit Home</Link>
+              <br />
+              <Link to={`/homes/${this.state.home._id}/delete`}>
+                Delete Home
               </Link>
             </div>
           ) : (
@@ -139,8 +140,16 @@ export default HomeShow;
     }
   }
 }
-
 export default HomeShow;
+home.num_bed} beds - {this.state.home.num_bath} baths -{" "}
+            {this.state.home.sq_ft} sqft
+          </p>
+          {this.props.userId === this.state.home.owner_id ? (
+            <div>
+              <Link to={`/homes/${this.state.home._id}/edit`}>Edit Home</Link>
+              <br />
+              <Link to={`/homes/${this.state.home._id}/delete`}>
+                Delete Home
               </Link>
             </div>
           ) : (
@@ -154,5 +163,5 @@ export default HomeShow;
     }
   }
 }
-
 export default HomeShow;
+
