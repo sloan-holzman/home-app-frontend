@@ -77,7 +77,7 @@ class NewHomeForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios
-      .post("http://localhost:3001/api/homes", {
+      .post(`${backend}api/homes/`, {
         street_address: this.state.home.street_address,
         unit: this.state.home.unit,
         city: this.state.home.city,

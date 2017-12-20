@@ -24,7 +24,7 @@ class DeleteHome extends React.Component {
 
   deleteHome() {
     axios
-      .delete(`http://localhost:3001/api/homes/${this.props.match.params.id}`)
+      .delete(`${backend}api/homes/${this.props.match.params.id}`)
       .then(response => {
         console.log("deleted");
         this.props.retrieveHomes();
