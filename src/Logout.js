@@ -1,27 +1,27 @@
-import React from 'react'
-class Logout extends React.Component {
+import React from "react";
 
+class Logout extends React.Component {
   constructor(props) {
-    super(props)
-    this.logout = this.logout.bind(this)
+    super(props);
+    this.logout = this.logout.bind(this);
   }
 
-logout() {
-  localStorage.token = ""
-  this.props.history.push(`/`)
-}
+  logout() {
+    console.log("*******");
+    console.log(this.props);
+    localStorage.token = "";
+    // this.props.setMessage("Logged out successfully");
+    // this.props.alertToggle(true);
+    this.props.history.push(`/`);
+  }
 
-componentDidMount(){
-  this.logout()
-}
+  componentDidMount() {
+    this.logout();
+  }
 
   render() {
-    return (
-      <div>
-      </div>
-    )
+    return <div />;
   }
 }
 
-
-export default Logout
+export default Logout;

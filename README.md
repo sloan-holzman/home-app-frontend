@@ -1,68 +1,57 @@
-#Home Finder
+# Home Finder
 
-##Description
+## Description
 
 The purpose of this application is to allow the user to browse for homes that are for rent and sale. It also allows the user to create an account and post listings of their own for rent or sale.
 
-##Links to repositories
+## Links to repositories
 
-https://github.com/sloan-holzman/home-app-frontend
-https://github.com/AMSpears/home-app-backend
+https://github.com/sloan-holzman/home-app-frontend https://github.com/AMSpears/home-app-backend
 
-##Link to deployed app
+## Link to deployed app
 
-http://home-finder.surge.sh
-https://home-app-backend.herokuapp.com/
+http://home-finder.surge.sh https://home-app-backend.herokuapp.com/
 
-##Technologies Uses
+## Technologies Uses
 
-- MERN stack (MongoDB, Express, React, Node.js)
-- CSS
-- HTML
-- JavaScript
+MERN stack (MongoDB, Express, React, Node.js)
 
-- Dependencies Frontend:
-Axios
-React
-React Dom
-React Google Maps
-React Router Dom
-React Scripts
+CSS
 
-- Dependencies Backend:
-Bcrypt
-Body Parser
-Cors
-Express
-JWT-simple
-Method-override
-Mongoose
-Passport
+HTML
 
+JavaScript
 
-##Approach Taken
+Dependencies Frontend: Axios React React Dom React Google Maps React Router Dom React Scripts
 
--Feature branches
--Use Agile
+Dependencies Backend: Bcrypt Body Parser Cors Express JWT-simple Method-override Mongoose Passport
 
-##Features
+## Approach Taken
 
-- CRUD on homes
-- Google Maps API
+-Feature branches -Use Agile
 
-##Installation
+## Roles
 
-- Fork or Clone frontend and backend repositories
-- Run npm install
-- Ensure BackendVariable.js file exports the right location depending  on where you would like to run the app
-- Start mongo
-- Run npm start
+We began with Troy and Sloan setting up the front-end and Angie setting up the back-end. As the work continued, Sloan laid out the basic functionality and structure of the app, Angie was the CSS guru, and Troy was implementing and helping with a mix of features.
 
+## Features
 
-##Future Features
+CRUD on homes
+Google Maps API
 
-- Pull in other APIS (Yelp, Zillow, etc...)
-- Allow users to track homes they are interested in
-- Allow users to write private personalized notes on specific homes
-- Filter homes by interest
-- Add S3 image uploading
+## Installation
+
+Fork or Clone frontend and backend repositories
+Run npm install
+Ensure BackendVariable.js file exports the right location depending on where you would like to run the app
+Start mongo
+Run npm start
+
+## Future Features
+
+Pull in other APIS (Yelp, Zillow, etc...)
+Allow users to track homes they are interested in
+Allow users to write private personalized notes on specific homes
+Filter homes by interest
+Add S3 image uploading
+Implement smarter form input processing (for commas, etc.)
