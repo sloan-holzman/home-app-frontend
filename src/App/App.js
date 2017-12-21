@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Header from "../Header/Header.js";
 import NewHomeForm from "../NewHomeForm/NewHomeForm.js";
-import EditHomeForm from "../EditHomeForm/EditHomeForm.js";
+import EditHomeForm from "../EditHome/EditHomeForm.js";
 import HomeList from "../HomeList/HomeList.js";
 import HomeShow from "../HomeShow/HomeShow.js";
 import LoginForm from "../LoginForm/LoginForm.js";
-import Logout from "../Logout/Logout.js";
-import DeleteHome from "../DeleteHome/DeleteHome.js";
+import Logout from "../Logout.js";
+import DeleteHome from "../DeleteHome.js";
 import SignUpForm from "../SignUpForm/SignUpForm.js";
 import Section from "../Section.js";
 import axios from "axios";
@@ -17,7 +17,7 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import backend from "./BackendVariable";
+import backend from "../BackendVariable";
 
 class App extends Component {
   constructor(props) {

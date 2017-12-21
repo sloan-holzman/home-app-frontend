@@ -76,11 +76,7 @@ class LoginForm extends React.Component {
     const { errors, submitted } = this.state;
     const { email, password } = this.state.user;
 
-    return submitted ? (
-      <Section>
-        <h2>{this.props.confirmationMessage}</h2>
-      </Section>
-    ) : (
+    return (
       <Section>
         <div>
           <div className="form-style">

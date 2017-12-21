@@ -88,11 +88,7 @@ class SignUpForm extends React.Component {
     const { email, password, confirmPassword } = this.state.user;
 
     console.log("Alert");
-    return submitted ? (
-      <Section>
-        <Alert msg={"Thanks for signing up!"} />
-      </Section>
-    ) : (
+    return (
       <Section>
         <div className="form-style">
           <TextInput
