@@ -6,11 +6,15 @@ The purpose of this application is to allow the user to browse for homes that ar
 
 ## Links to repositories
 
-https://github.com/sloan-holzman/home-app-frontend https://github.com/AMSpears/home-app-backend
+https://github.com/sloan-holzman/home-app-frontend
+
+https://github.com/AMSpears/home-app-backend
 
 ## Link to deployed app
 
-http://home-finder.surge.sh https://home-app-backend.herokuapp.com/
+http://home-finder.surge.sh
+
+https://home-app-backend.herokuapp.com/
 
 ## Technologies Uses
 
