@@ -26,6 +26,8 @@ class DeleteHome extends React.Component {
         this.props.retrieveHomes();
       })
       .then(() => {
+        this.props.setMessage("Home deleted");
+        this.props.alertToggle(true);
         this.props.history.push(`/`);
       })
       .catch(err => {

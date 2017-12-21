@@ -197,6 +197,7 @@ class App extends Component {
                       alertOn={this.state.alertOn}
                       alertToggle={this.alertToggle}
                       setMessage={this.setMessage}
+                      retrieveHomes={this.retrieveHomes}
                     />
                   );
                 }}

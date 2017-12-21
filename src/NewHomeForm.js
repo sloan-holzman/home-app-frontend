@@ -105,6 +105,8 @@ class NewHomeForm extends React.Component {
       })
       .then(homeId => {
         console.log(this.props);
+        this.props.setMessage("Home created!");
+        this.props.alertToggle(true);
         this.props.history.push(`/homes/${homeId}`);
       })
       .catch(err => {

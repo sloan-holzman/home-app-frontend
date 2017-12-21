@@ -114,6 +114,8 @@ class EditHomeForm extends React.Component {
         return homeId;
       })
       .then(homeId => {
+        this.props.setMessage("Home updated!");
+        this.props.alertToggle(true);
         this.props.history.push(`/homes/${this.state.homeId}`);
       })
       .catch(err => {
