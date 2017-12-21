@@ -22,7 +22,6 @@ class DeleteHome extends React.Component {
         headers: { token: localStorage.token }
       })
       .then(response => {
-        console.log("deleted");
         this.props.retrieveHomes();
       })
       .then(() => {

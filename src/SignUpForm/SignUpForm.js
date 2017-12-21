@@ -64,14 +64,12 @@ class SignUpForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios
-      .post(`${backend}signup`, {
+      .post(`${backend}api/signup`, {
         email: this.state.user.email,
         password: this.state.user.password
       })
       .then(response => {
-        console.log(response);
         localStorage.token = response.data.token;
-        console.log(localStorage.token);
         this.props.setMessage("Signed in successfully!");
         this.props.alertToggle(true);
         this.props.retrieveHomes();
@@ -87,7 +85,6 @@ class SignUpForm extends React.Component {
     const { errors, submitted } = this.state;
     const { email, password, confirmPassword } = this.state.user;
 
-    console.log("Alert");
     return (
       <Section>
         <div className="form-style">

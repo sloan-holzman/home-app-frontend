@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios
-      .post(`${backend}login`, {
+      .post(`${backend}api/login`, {
         email: this.state.user.email,
         password: this.state.user.password
       })
@@ -97,7 +97,12 @@ class LoginForm extends React.Component {
               onChange={this.onChange}
             />
             <input type="submit" value="Login" onClick={this.onSubmit} />
-            <Link to="/signup">Sign Up</Link>
+            <Link
+              to="/signup"
+              style={Object.assign({ fontSize: "16px", fontWeight: "bold" })}
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
       </Section>

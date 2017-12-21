@@ -35,7 +35,6 @@ class EditHomeForm extends React.Component {
   onChange(event) {
     const home = this.state.home;
     home[event.target.name] = event.target.value;
-    console.log(event.target.value);
     this.setState({ home });
   }
 
@@ -43,14 +42,10 @@ class EditHomeForm extends React.Component {
     axios
       .get(`${backend}api/homes/${this.props.match.params.id}`)
       .then(response => {
-        console.log(response.data);
-        this.setState(
-          {
-            home: response.data,
-            homeId: response.data._id
-          },
-          () => console.log(this.state.home)
-        );
+        this.setState({
+          home: response.data,
+          homeId: response.data._id
+        });
       });
   }
 
@@ -108,8 +103,6 @@ class EditHomeForm extends React.Component {
       }
     })
       .then(response => {
-        console.log(response);
-        console.log(response.data._id);
         let homeId = response.data._id;
         this.props.retrieveHomes();
         return homeId;

@@ -40,7 +40,6 @@ class HomeShow extends React.Component {
     axios
       .get(`${backend}api/homes/${this.props.match.params.id}`)
       .then(response => {
-        console.log(response.data);
         this.setState(
           {
             home: response.data,
@@ -61,11 +60,9 @@ class HomeShow extends React.Component {
       )
       .then(response => {
         if (response.data.status !== "ZERO_RESULTS") {
-          console.log(response);
           this.setState({
             center: response.data.results[0].geometry.location
           });
-          console.log(response.data.results[0].geometry.location.lng);
         } else {
           console.log("No results");
         }
@@ -122,7 +119,6 @@ class HomeShow extends React.Component {
         </Section>
       );
     } else {
-      console.log(this.state.center);
       return (
         <Section>
           {" "}

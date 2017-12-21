@@ -41,12 +41,10 @@ class App extends Component {
           headers: { token: localStorage.token }
         })
         .then(response => {
-          console.log("dogs");
           this.setState({
             homes: response.data.homes,
             userId: response.data.userid
           });
-          console.log(typeof this.state.homes);
         })
         .catch(err => {
           console.log(err);
@@ -60,7 +58,6 @@ class App extends Component {
             homes: response.data.homes,
             userId: response.data.userid
           });
-          console.log(typeof this.state.homes);
         })
         .catch(err => {
           console.log(err);

@@ -8,7 +8,6 @@ class HomeSummary extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     const imageStyle = {
       border: "1px solid #000000",
       margin: "auto 20px"

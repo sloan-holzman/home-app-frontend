@@ -40,7 +40,6 @@ class NewHomeForm extends React.Component {
   onChange(event) {
     const home = this.state.home;
     home[event.target.name] = event.target.value;
-    console.log(event.target.value);
     this.setState({ home });
   }
   validate({
@@ -97,14 +96,11 @@ class NewHomeForm extends React.Component {
       }
     })
       .then(response => {
-        console.log(response);
-        console.log(response.data._id);
         let homeId = response.data._id;
         this.props.retrieveHomes();
         return homeId;
       })
       .then(homeId => {
-        console.log(this.props);
         this.props.setMessage("Home created!");
         this.props.alertToggle(true);
         this.props.history.push(`/homes/${homeId}`);

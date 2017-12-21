@@ -1,45 +1,46 @@
 h3 {
-	font-size: 16px;
-	font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
 }
 p {
-	font-size: 14px;
-	font-family: 'Roboto', sans-serif;
-	color: #000000;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  color: #000000;
 }
 
 img {
-	margin: 15px;
-	width: 200px;
-	height: 200px;
+  margin: 15px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 img,
 h3,
 p {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .content-link {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .home-summary {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .home-summary__description {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .home-summary__address {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .home-summary__details {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
