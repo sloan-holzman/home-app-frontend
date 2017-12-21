@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import HomeSummary from "./HomeSummary";
+import HomeSummary from "../HomeSummary/HomeSummary";
 import "./HomeList.css";
-import Section from "./Section";
-import Alert from "./Alert";
+import Section from "../Section";
+import Alert from "../Alert/Alert";
 
 class HomeList extends React.Component {
   constructor(props) {

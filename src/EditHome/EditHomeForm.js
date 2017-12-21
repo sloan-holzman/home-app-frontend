@@ -1,19 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextInput from "./TextInput";
+import TextInput from "../TextInput";
 import axios from "axios";
-import DropDown from "./DropDown";
-import backend from "./BackendVariable";
-import "./NewHomeForm.css";
-import Section from "./Section";
+import DropDown from "../DropDown";
+import backend from "../BackendVariable";
+import Section from "../Section";
+import "./EditHomeForm.css";
 
-// if (localStorage.token) {
-//   axios.defaults.headers.common["token"] = localStorage.token;
-// } else {
-//   axios.defaults.headers.common["token"] = "";
-// }
-
-class NewHomeForm extends React.Component {
+class EditHomeForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +26,8 @@ class NewHomeForm extends React.Component {
         type_rent_buy: "Rent"
       },
       errors: {},
-      submitted: false
+      submitted: false,
+      homeId: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -43,6 +38,22 @@ class NewHomeForm extends React.Component {
     console.log(event.target.value);
     this.setState({ home });
   }
+
+  componentDidMount() {
+    axios
+      .get(`${backend}api/homes/${this.props.match.params.id}`)
+      .then(response => {
+        console.log(response.data);
+        this.setState(
+          {
+            home: response.data,
+            homeId: response.data._id
+          },
+          () => console.log(this.state.home)
+        );
+      });
+  }
+
   validate({
     street_address,
     unit,
@@ -79,8 +90,8 @@ class NewHomeForm extends React.Component {
       this.setState({ submitted: true });
     }
     axios({
-      method: "POST",
-      url: `${backend}api/homes/`,
+      method: "PUT",
+      url: `${backend}api/homes/${this.props.match.params.id}`,
       headers: { token: localStorage.token },
       data: {
         street_address: this.state.home.street_address,
@@ -104,10 +115,9 @@ class NewHomeForm extends React.Component {
         return homeId;
       })
       .then(homeId => {
-        console.log(this.props);
-        this.props.setMessage("Home created!");
+        this.props.setMessage("Home updated!");
         this.props.alertToggle(true);
-        this.props.history.push(`/homes/${homeId}`);
+        this.props.history.push(`/homes/${this.state.homeId}`);
       })
       .catch(err => {
         console.log(err);
@@ -116,46 +126,42 @@ class NewHomeForm extends React.Component {
 
   render() {
     const { errors, submitted } = this.state;
-    const {
-      street_address,
-      unit,
-      city,
-      state,
-      zipcode,
-      num_bed,
-      num_bath,
-      sq_ft,
-      img_url,
-      price_range,
-      type_rent_buy
-    } = this.state.home;
 
-    let formDisplay = null;
-    if (localStorage.token && localStorage.token.length > 10) {
-      if (submitted) {
-        formDisplay = <h2> {this.props.confirmationMessage} </h2>;
-      } else {
-        formDisplay = (
-          <div>
-            <div className="form-style">
+    let home = this.props.homes.find(
+      home => home._id === this.props.match.params.id
+    );
+
+    if (!home) {
+      return (
+        <Section>
+          <p>Loading...</p>
+        </Section>
+      );
+    } else {
+      return (
+        <Section>
+          <div className="form-style">
+            <h2> Edit </h2>
+            <h4>
               <TextInput
                 labelName="Street Address:"
                 name="street_address"
-                placeholder="e.g. 111 River St."
+                defaultValue={home.street_address}
                 required
                 error={errors.street_address}
                 onChange={this.onChange}
+                ref="street_address"
               />
               <TextInput
                 labelName="Unit:"
                 name="unit"
-                placeholder="e.g. 14F"
+                defaultValue={home.unit}
                 onChange={this.onChange}
               />
               <TextInput
                 labelName="City:"
                 name="city"
-                placeholder="e.g. Mclean"
+                defaultValue={home.city}
                 required
                 error={errors.city}
                 onChange={this.onChange}
@@ -163,7 +169,7 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="State:"
                 name="state"
-                placeholder="e.g. VA"
+                defaultValue={home.state}
                 required
                 error={errors.state}
                 onChange={this.onChange}
@@ -171,7 +177,7 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="Zipcode:"
                 name="zipcode"
-                placeholder="e.g. 22222"
+                defaultValue={home.zipcode}
                 required
                 error={errors.zipcode}
                 onChange={this.onChange}
@@ -179,7 +185,7 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="Bedrooms:"
                 name="num_bed"
-                placeholder="e.g. 2"
+                defaultValue={home.num_bed}
                 required
                 error={errors.num_bed}
                 onChange={this.onChange}
@@ -187,7 +193,7 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="Bathrooms:"
                 name="num_bath"
-                placeholder="e.g. 2"
+                defaultValue={home.num_bath}
                 required
                 error={errors.num_bath}
                 onChange={this.onChange}
@@ -195,7 +201,7 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="Sqft:"
                 name="sq_ft"
-                placeholder="e.g. 700"
+                defaultValue={home.sq_ft}
                 required
                 error={errors.sq_ft}
                 onChange={this.onChange}
@@ -203,13 +209,13 @@ class NewHomeForm extends React.Component {
               <TextInput
                 labelName="Image Url:"
                 name="img_url"
-                placeholder="https://yourhomephoto.jpg"
+                defaultValue={home.img_url}
                 onChange={this.onChange}
               />
               <TextInput
                 labelName="Price range: $"
                 name="price_range"
-                placeholder="e.g. $ 1000 "
+                defaultValue={home.price_range}
                 required
                 error={errors.price_range}
                 onChange={this.onChange}
@@ -217,32 +223,25 @@ class NewHomeForm extends React.Component {
               <DropDown
                 labelName=" Property for rent or sell ?"
                 name="type_rent_buy"
+                defaultValue={home.type_rent_buy}
                 required
                 error={errors.type_rent_buy}
                 onChange={this.onChange}
               />
-
-              <input type="submit" value="Submit" onClick={this.onSubmit} />
-            </div>
+            </h4>
+            <input type="submit" value="Submit" onClick={this.onSubmit} />
           </div>
-        );
-      }
-    } else {
-      formDisplay = <p>You must be logged in if you want to post a new home</p>;
+        </Section>
+      );
     }
-    return (
-      <Section>
-        <div>{formDisplay}</div>
-      </Section>
-    );
   }
 }
 
-NewHomeForm.propTypes = {
+EditHomeForm.propTypes = {
   confirmationMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired
 };
-NewHomeForm.defaultProps = {
-  confirmationMessage: "Home has been listed!"
+EditHomeForm.defaultProps = {
+  confirmationMessage: "Home has been submitted!"
 };
-export default NewHomeForm;
+export default EditHomeForm;

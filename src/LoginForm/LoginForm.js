@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextInput from "./TextInput";
-import PasswordInput from "./PasswordInput";
+import TextInput from "../TextInput";
+import PasswordInput from "../PasswordInput";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import backend from "./BackendVariable";
-import Section from "./Section";
+import backend from "../BackendVariable";
+import Section from "../Section";
 
 class LoginForm extends React.Component {
   constructor(props) {

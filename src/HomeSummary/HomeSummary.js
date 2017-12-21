@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./HomeSummary.css";
+
 class HomeSummary extends React.Component {
   constructor(props) {
     super(props);

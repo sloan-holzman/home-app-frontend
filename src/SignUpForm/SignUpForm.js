@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextInput from "./TextInput";
-import PasswordInput from "./PasswordInput";
+import TextInput from "../TextInput";
+import PasswordInput from "../PasswordInput";
 import axios from "axios";
-import Alert from "./Alert";
-import backend from "./BackendVariable";
+import Alert from "../Alert/Alert";
+import backend from "../BackendVariable";
 import "./SignUpForm.css";
-import Section from "./Section";
+import Section from "../Section";
 
 class SignUpForm extends React.Component {
   constructor(props) {

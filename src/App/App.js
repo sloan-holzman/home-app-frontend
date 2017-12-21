@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import Header from "./Header.js";
-import NewHomeForm from "./NewHomeForm.js";
-import EditHomeForm from "./EditHomeForm.js";
-import HomeList from "./HomeList.js";
-import HomeShow from "./HomeShow.js";
-import LoginForm from "./LoginForm.js";
-import Logout from "./Logout.js";
-import DeleteHome from "./DeleteHome.js";
-import SignUpForm from "./SignUpForm.js";
-import Section from "./Section.js";
+import Header from "../Header/Header.js";
+import NewHomeForm from "../NewHomeForm/NewHomeForm.js";
+import EditHomeForm from "../EditHomeForm/EditHomeForm.js";
+import HomeList from "../HomeList/HomeList.js";
+import HomeShow from "../HomeShow/HomeShow.js";
+import LoginForm from "../LoginForm/LoginForm.js";
+import Logout from "../Logout/Logout.js";
+import DeleteHome from "../DeleteHome/DeleteHome.js";
+import SignUpForm from "../SignUpForm/SignUpForm.js";
+import Section from "../Section.js";
 import axios from "axios";
 import "./App.css";
 import {
@@ -36,21 +36,21 @@ class App extends Component {
 
   retrieveHomes() {
     if (localStorage.token) {
-    axios
-      .get(`${backend}api/homes`, {
-        headers: { token: localStorage.token }
-      })
-      .then(response => {
-        console.log("dogs");
-        this.setState({
-          homes: response.data.homes,
-          userId: response.data.userid
+      axios
+        .get(`${backend}api/homes`, {
+          headers: { token: localStorage.token }
+        })
+        .then(response => {
+          console.log("dogs");
+          this.setState({
+            homes: response.data.homes,
+            userId: response.data.userid
+          });
+          console.log(typeof this.state.homes);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        console.log(typeof this.state.homes);
-      })
-      .catch(err => {
-        console.log(err);
-      });
     } else {
       axios
         .get(`${backend}api/homes`)

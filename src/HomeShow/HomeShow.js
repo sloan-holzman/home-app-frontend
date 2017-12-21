@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MyMapComponent from "./MyMapComponent.js";
+import MyMapComponent from "../MyMapComponent.js";
 import axios from "axios";
-import backend from "./BackendVariable";
+import backend from "../BackendVariable";
 import "./HomeShow.css";
-import Section from "./Section";
+import Section from "../Section";
 
 class HomeShow extends React.Component {
   constructor(props) {
