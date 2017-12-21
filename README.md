@@ -30,6 +30,10 @@ Dependencies Backend: Bcrypt Body Parser Cors Express JWT-simple Method-override
 
 -Feature branches -Use Agile
 
+## Roles
+
+We began with Troy and Sloan setting up the front-end and Angie setting up the back-end. As the work continued, Sloan laid out the basic functionality and structure of the app, Angie was the CSS guru, and Troy was implementing and helping with a mix of features.
+
 ## Features
 
 CRUD on homes
@@ -50,4 +54,3 @@ Allow users to track homes they are interested in
 Allow users to write private personalized notes on specific homes
 Filter homes by interest
 Add S3 image uploading
-
