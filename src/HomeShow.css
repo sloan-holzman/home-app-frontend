@@ -5,12 +5,35 @@
 	margin: 2px auto;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	background-color: white;
 }
-.form-spacer {
-	min-height: 20px;
+
+.image {
+	width: 200px;
+	height: 200px;
+	margin: 0px 130px;
+	background-position: center;
+}
+.map {
+	width: 800px;
+	margin: 20px 40px;
+}
+.buttom {
+	text-decoration: none;
+	font-size: 16px;
+	margin: 20px auto;
+	padding: 2px 5px;
+	font-weight: bold;
 }
 h3 {
-	font-size: ;
+	font-size: 16px;
+	margin: 10px auto;
+	line-height: 90%;
+}
+p {
+	margin: 10px auto;
+	font-size: 14px;
+	padding: 1px 10px 20px 20px;
+	line-height: 100%;
 }

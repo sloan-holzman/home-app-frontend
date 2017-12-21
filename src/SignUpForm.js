@@ -86,16 +86,7 @@ class SignUpForm extends React.Component {
   render() {
     const { errors, submitted } = this.state;
     const { email, password, confirmPassword } = this.state.user;
-    const formStyle = {
-      border: "1px solid #000000",
-      padding: "5px 50px",
-      width: "500px",
-      margin: "2px auto",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      backgroundColor: "white"
-    };
+
     console.log("Alert");
     return submitted ? (
       <Section>
@@ -103,36 +94,34 @@ class SignUpForm extends React.Component {
       </Section>
     ) : (
       <Section>
-        <div className="form-spacer">
-          <div style={formStyle}>
-            <TextInput
-              htmlId="signup-form-email"
-              labelName="Email"
-              name="email"
-              required
-              error={errors.email}
-              onChange={this.onChange}
-            />
-            <PasswordInput
-              htmlId="signup-form-password"
-              name="password"
-              strengthPercentage={this.passwordStrength(password)}
-              showVisibilityToggle
-              maxLength={24}
-              error={errors.password}
-              onChange={this.onChange}
-            />
-            <PasswordInput
-              htmlId="signup-form-password"
-              name="confirmPassword"
-              showVisibilityToggle
-              maxLength={24}
-              error={errors.password}
-              onChange={this.onChange}
-              labelName="Confirm Password"
-            />
-            <input type="submit" value="Sign Up" onClick={this.onSubmit} />
-          </div>
+        <div className="form-style">
+          <TextInput
+            htmlId="signup-form-email"
+            labelName="Email"
+            name="email"
+            required
+            error={errors.email}
+            onChange={this.onChange}
+          />
+          <PasswordInput
+            htmlId="signup-form-password"
+            name="password"
+            strengthPercentage={this.passwordStrength(password)}
+            showVisibilityToggle
+            maxLength={24}
+            error={errors.password}
+            onChange={this.onChange}
+          />
+          <PasswordInput
+            htmlId="signup-form-password"
+            name="confirmPassword"
+            showVisibilityToggle
+            maxLength={24}
+            error={errors.password}
+            onChange={this.onChange}
+            labelName="Confirm Password"
+          />
+          <input type="submit" value="Sign Up" onClick={this.onSubmit} />
         </div>
       </Section>
     );
