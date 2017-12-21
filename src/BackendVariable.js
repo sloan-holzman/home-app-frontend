@@ -1,4 +1,4 @@
-let backend = "http://localhost:3001/";
-// ("https://home-app-backend.herokuapp.com/");
+let backend = "https://home-app-backend.herokuapp.com/";
+//"http://localhost:3001/";
 
 export default backend;
