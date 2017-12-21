@@ -35,6 +35,7 @@ class App extends Component {
   }
 
   retrieveHomes() {
+    if (localStorage.token) {
     axios
       .get(`${backend}api/homes`, {
         headers: { token: localStorage.token }
@@ -50,6 +51,21 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+    } else {
+      axios
+        .get(`${backend}api/homes`)
+        .then(response => {
+          console.log("dogs");
+          this.setState({
+            homes: response.data.homes,
+            userId: response.data.userid
+          });
+          console.log(typeof this.state.homes);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 
   alertToggle(status) {
